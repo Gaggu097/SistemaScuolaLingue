@@ -23,29 +23,3 @@ public class ClienteDAO extends GenericDAO<EntityCliente, Integer> {
 		return deleteById(EntityCliente.class, id);
 	}
 }
-/*
-public class ClienteDAO {
-
-
-	public void salvaCliente() {
-		// TODO - implement ClienteDAO.salvaCliente
-		throw new UnsupportedOperationException();
-	}
-
-	public EntityCliente trovaCliente() {
-		// TODO - implement ClienteDAO.trovaCliente
-		throw new UnsupportedOperationException();
-	}
-
-	public void aggiornaCliente() {
-		// TODO - implement ClienteDAO.aggiornaCliente
-		throw new UnsupportedOperationException();
-	}
-
-	public void eliminaCliente() {
-		// TODO - implement ClienteDAO.eliminaCliente
-		throw new UnsupportedOperationException();
-	}
-
-}
-*/

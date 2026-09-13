@@ -10,6 +10,7 @@ import javax.swing.text.html.parser.Entity;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestClienteDAO {
     private EntityCliente c;
@@ -54,5 +55,15 @@ public class TestClienteDAO {
         cAggiornato = cDAO.aggiornaCliente(c);
         // 3 assert
         assertNotNull(cAggiornato, "cliente must be UPDATED in DB for testing");
+    }
+
+    @Test
+    void eliminaCliente(){
+        // 1 arrange
+        idCliente = 52;
+        // 2 act
+        boolean esito = cDAO.eliminaClientePerId(idCliente);
+        // 3 assert
+        assertTrue(esito, "cliente must be deleted in DB for testing");
     }
 }

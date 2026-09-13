@@ -70,7 +70,7 @@ public class EntityCorso implements Serializable {
 	@Column(name="numeroiscritti", nullable=false)
 	private int numIscritti = 0;
 
-	
+
 	private void setID(int value) {
 		this.ID = value;
 	}
@@ -125,7 +125,8 @@ public class EntityCorso implements Serializable {
 	
 	public int verificaDisponbilitàPosto() {
 		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		return getNumeroMassimoPartecipanti() - getNumIscritti();
+		// throw new UnsupportedOperationException();
 	}
 	
 	public String toString() {

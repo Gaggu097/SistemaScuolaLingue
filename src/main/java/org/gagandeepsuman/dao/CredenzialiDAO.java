@@ -1,6 +1,7 @@
 package org.gagandeepsuman.dao;
 
 import org.gagandeepsuman.entity.EntityCredenziali;
+import org.hibernate.Session;
 
 public class CredenzialiDAO extends GenericDAO<EntityCredenziali, Integer> {
 
@@ -23,30 +24,18 @@ public class CredenzialiDAO extends GenericDAO<EntityCredenziali, Integer> {
 	public boolean eliminaCredenzialiPerId(int id) {
 		return deleteById(EntityCredenziali.class, id);
 	}
-}
 
-/*
-public class CredenzialiDAO {
-
-	public void salvaPagamento() {
-		// TODO - implement CredenzialiDAO.salvaPagamento
-		throw new UnsupportedOperationException();
-	}
-
-	public void trovaPagamento() {
-		// TODO - implement CredenzialiDAO.trovaPagamento
-		throw new UnsupportedOperationException();
-	}
-
-	public void aggiornaPagamento() {
-		// TODO - implement CredenzialiDAO.aggiornaPagamento
-		throw new UnsupportedOperationException();
-	}
-
-	public void eliminaPagamento() {
-		// TODO - implement CredenzialiDAO.eliminaPagamento
-		throw new UnsupportedOperationException();
+	public static boolean esisteUsername(String username) {
+		try (Session session = sessionFactory.openSession()) {
+			String hql = "SELECT COUNT(c) FROM EntityCredenziali c WHERE c.username = :username";
+			Long count = session.createQuery(hql, Long.class)
+					.setParameter("username", username)
+					.getSingleResult();
+			return count > 0;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 }
- */
