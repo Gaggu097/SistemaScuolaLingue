@@ -14,7 +14,6 @@ License Type: Evaluation
 		<property name="connection.url">jdbc:postgresql://localhost:5432/gagandeepsuman</property>
 		<property name="connection.username">gagandeepsuman</property>
 		<property name="connection.password">Gaggu123</property>
-		<property name="hibernate.connection.provider_class">org.hibernate.service.jdbc.connections.internal.C3P0ConnectionProvider</property>
 		<property name="hibernate.c3p0.acquire_increment">1</property>
 		<property name="hibernate.c3p0.idle_test_period">0</property>
 		<property name="hibernate.c3p0.min_size">1</property>

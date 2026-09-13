@@ -9,7 +9,7 @@ public class TestCorsoDAO {
     public static void main(String[] args) {
         CorsoDAO corsoDAO = new CorsoDAO();
 
-        // 1. Istanzia un nuovo corso (usiamo String per BigDecimal)
+        // 1. Istanzia un nuovo corso (String per BigDecimal)
         EntityCorso corso = new EntityCorso();
         corso.setLinguaCorso("Punjabi");
         corso.setLivelloCorso("A1");

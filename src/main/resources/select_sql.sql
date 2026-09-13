@@ -1,4 +1,4 @@
-SELECT idCalendarioLezioni, dataInizio, CorsoidCorso
+/* SELECT idCalendarioLezioni, dataInizio, CorsoidCorso
 FROM CalendarioLezioni;
 
 SELECT idClasse, capienza
@@ -196,3 +196,5 @@ DELETE FROM Lezione
 WHERE idLezione = ?;
 DELETE FROM Pagamento
 WHERE idPagamento = ?;
+
+ */

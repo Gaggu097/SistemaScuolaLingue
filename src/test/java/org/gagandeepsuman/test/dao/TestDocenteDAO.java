@@ -2,29 +2,54 @@ package org.gagandeepsuman.test.dao;
 
 import org.gagandeepsuman.dao.DocenteDAO;
 import org.gagandeepsuman.entity.EntityDocente;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class TestDocenteDAO {
-    public static void main(String[] args) {
-        DocenteDAO dDAO = new DocenteDAO();
+    private EntityDocente d;
+    private DocenteDAO dDAO;
+    private EntityDocente dAggiornato;
+    private int idDocente;
+    @BeforeEach
+    void setUp(){
+        d = new EntityDocente();
+        dDAO = new DocenteDAO();
+        dAggiornato = new EntityDocente();
+    }
+    @Test
+    void inserisciDocente(){
+        // 1 arrange
+        d.setCognome("Vittorni");
+        d.setNome("Valeria");
+        // 2 act
+        dAggiornato = dDAO.salvaDocente(d);
+        // 3 assert
+        assertNotNull(dAggiornato, "Docente must be saved to database for testing");
+    }
+    @Test
+    void trovaDocente(){
 
-        // 1. Istanzia un nuovo docente
-        EntityDocente docente = new EntityDocente();
-        docente.setNome("Mario");
-        docente.setCognome("Rossi");
+        // 1 arrange
+        idDocente = 2;
 
-        System.out.println("Salvataggio del docente nel database PostgreSQL...");
-
-        // 2. Chiamata al DAO
-        EntityDocente docenteSalvato = dDAO.salvaDocente(docente);
-
-        // 3. Esito
-        if (docenteSalvato != null && docenteSalvato.getID() > 0) {
-            System.out.println("###########Docente salvato con successo###########");
-            System.out.println("ID Generato: " + docenteSalvato.getID());
-            System.out.println("Nome: " + docenteSalvato.getNome());
-            System.out.println("Cognome: " + docenteSalvato.getCognome());
-        } else {
-            System.err.println("❌ Errore durante il salvataggio del corso.");
-        }
+        // 2 act
+        dAggiornato = dDAO.trovaDocente(idDocente);
+        // 3 assert
+        assertNotNull(dAggiornato, "Docente must be found on database for testing");
+        System.out.print("Docente Trovato:" + dAggiornato);
+    }
+    @Test
+    void aggiornaDocente(){
+        // 1 arrange
+        idDocente = 2;
+        // 2 act
+        d = dDAO.trovaDocente(idDocente);
+        d.setNome("Vittoriaa");
+        dAggiornato = dDAO.aggiornaDocente(d);
+        // 3 assert
+        assertNotNull(dAggiornato, "Docente must be updated on database for testing");
+        System.out.print("Docente Trovato:" + dAggiornato);
     }
 }

@@ -27,7 +27,6 @@ public class EntityClasse implements Serializable {
 	}
 	public EntityClasse(int capienza) {
 		this.capienza = capienza;
-
 	}
 	
 	@Column(name="idclasse", length=10)

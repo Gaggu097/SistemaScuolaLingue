@@ -17,8 +17,8 @@ import java.io.Serializable;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
-@Entity
 
+@Entity
 @Table(name="lezione")
 public class EntityLezione implements Serializable {
 	public EntityLezione() {
