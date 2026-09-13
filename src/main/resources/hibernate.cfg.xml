@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- PostgreSQL Database Connection -->
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/gagandeepsuman</property>
+        <property name="hibernate.connection.username">gagandeepsuman</property>
+        <property name="hibernate.connection.password">Gaggu123</property>
+
+        <!-- Hibernate 6 Settings -->
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <!-- Registered Entities -->
+        <mapping class="org.gagandeepsuman.entity.EntityCorso"/>
+        <mapping class="org.gagandeepsuman.entity.EntityCliente"/>
+        <mapping class="org.gagandeepsuman.entity.EntityLezione"/>
+        <mapping class="org.gagandeepsuman.entity.EntityClasse"/>
+        <mapping class="org.gagandeepsuman.entity.EntityIscrizione"/>
+        <mapping class="org.gagandeepsuman.entity.EntityCalendarioLezioni"/>
+        <mapping class="org.gagandeepsuman.entity.EntityDocente"/>
+        <mapping class="org.gagandeepsuman.entity.EntityPagamento"/>
+        <mapping class="org.gagandeepsuman.entity.EntityCredenziali"/>
+    </session-factory>
+</hibernate-configuration>
