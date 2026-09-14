@@ -16,7 +16,7 @@ jobs:
         image: postgres:18
         env:
           POSTGRES_DB: SistemaScuolaLingue
-          POSTGRES_USER: SistemaScuolaLingue
+          POSTGRES_USER: gagandeepsuman
           POSTGRES_PASSWORD: SistemaScuolaLingue
         ports:
           - 5432:5432
