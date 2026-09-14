@@ -10,6 +10,23 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    # 1. Add PostgreSQL 18 Service Container here
+    services:
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_DB: gagandeepsuman
+          POSTGRES_USER: gagandeepsuman
+          POSTGRES_PASSWORD: secretpassword
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    # 2. Workflow steps run after PostgreSQL is healthy
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v4
@@ -17,7 +34,7 @@ jobs:
     - name: Set up JDK 17
       uses: actions/setup-java@v4
       with:
-        java-version: ''
+        java-version: '17'
         distribution: 'temurin'
         cache: maven
 
