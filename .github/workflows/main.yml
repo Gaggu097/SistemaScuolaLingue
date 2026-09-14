@@ -32,10 +32,10 @@ jobs:
       uses: actions/checkout@v5
 
     - name: Set up JDK 26
-      uses: actions/setup-java@v4
+      uses: actions/setup-java@v5
       with:
         java-version: '26'
-        distribuition: 'temurin'
+        distribution: 'temurin'
         cache: maven
 
     - name: Execute Tests with Maven
