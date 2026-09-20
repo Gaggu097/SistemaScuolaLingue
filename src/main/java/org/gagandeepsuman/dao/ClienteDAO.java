@@ -1,6 +1,9 @@
 package org.gagandeepsuman.dao;
-import org.gagandeepsuman.entity.EntityCliente;
 
+import org.gagandeepsuman.entity.EntityCliente;
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class ClienteDAO extends GenericDAO<EntityCliente, Integer> {
 
 	public EntityCliente salvaCliente(EntityCliente cliente) {

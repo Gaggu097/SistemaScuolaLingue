@@ -39,7 +39,7 @@ public class EntityCliente implements Serializable {
 	@Column(name="idcliente", nullable=false, length=10)
 	@Id
 	@GeneratedValue(generator="DOMAINCLASSES_ENTITYCLIENTE_ID_GENERATOR")
-	@org.hibernate.annotations.GenericGenerator(name="DOMAINCLASSES_ENTITYCLIENTE_ID_GENERATOR")
+	//@org.hibernate.annotations.GenericGenerator(name="DOMAINCLASSES_ENTITYCLIENTE_ID_GENERATOR")
 	private int ID;
 
 	@Column(name="nome", nullable=true, length=255)
@@ -48,7 +48,7 @@ public class EntityCliente implements Serializable {
 	@Column(name="cognome", nullable=true, length=255)
 	private String cognome;
 
-	@Column(name="dataNascita", nullable=true)
+	@Column(name="datanascita", nullable=true)
 	private LocalDate dataNascita;
 
 	@Column(name="email", nullable=true, length=255)

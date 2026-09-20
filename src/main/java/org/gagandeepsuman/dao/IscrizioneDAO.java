@@ -4,7 +4,9 @@ import org.gagandeepsuman.entity.EntityIscrizione;
 import org.hibernate.Session;
 
 import java.util.List;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class IscrizioneDAO extends GenericDAO<EntityIscrizione, Integer> {
 
 	public EntityIscrizione creaIscrizione(EntityIscrizione iscrizione) {
@@ -15,18 +17,18 @@ public class IscrizioneDAO extends GenericDAO<EntityIscrizione, Integer> {
 		org.hibernate.Transaction tx = null;
 		try (Session session = sessionFactory.openSession()) {
 			tx = session.beginTransaction();
-			
+
 			// 1. Salva Iscrizione
 			session.persist(iscrizione);
-			
+
 			// 2. Imposta l'ID dell'iscrizione salvata nel Pagamento e salvalo
 			pagamento.setFkIdIscrizione(iscrizione.getID());
 			session.persist(pagamento);
-			
+
 			// 3. Aggiorna il numero iscritti del Corso
 			corso.setNumIscritti(corso.getNumIscritti() + 1);
 			session.merge(corso);
-			
+
 			tx.commit();
 			return true;
 		} catch (Exception e) {
@@ -97,6 +99,32 @@ public class IscrizioneDAO extends GenericDAO<EntityIscrizione, Integer> {
 			String hql = "FROM EntityIscrizione i WHERE i.FKidCorso = :idCorso AND i.deletedAt IS NULL";
 			return session.createQuery(hql, EntityIscrizione.class)
 					.setParameter("idCorso", idCorso)
+					.getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	/**
+	 * Restituisce tutte le iscrizioni non annullate di una determinata classe.
+	 */
+	public List<EntityIscrizione> trovaPerClasse(int idClasse) {
+		try (Session session = sessionFactory.openSession()) {
+			// First, get the classe to find its fkIdCorso
+			// We'll create a temporary DAO for Classe to avoid Spring dependency issues
+			org.gagandeepsuman.dao.ClasseDAO classeDao = new org.gagandeepsuman.dao.ClasseDAO();
+			classeDao.sessionFactory = this.sessionFactory;
+
+			org.gagandeepsuman.entity.EntityClasse classe = classeDao.findById(org.gagandeepsuman.entity.EntityClasse.class, idClasse);
+			if (classe == null) {
+				return new java.util.ArrayList<>();
+			}
+
+			// Now find iscrizioni for this corso
+			String hql = "FROM EntityIscrizione i WHERE i.FKidCorso = :idCorso AND i.deletedAt IS NULL";
+			return session.createQuery(hql, EntityIscrizione.class)
+					.setParameter("idCorso", classe.getFkIdCorso())
 					.getResultList();
 		} catch (Exception e) {
 			e.printStackTrace();

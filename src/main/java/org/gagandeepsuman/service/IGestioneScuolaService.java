@@ -2,6 +2,7 @@ package org.gagandeepsuman.service;
 
 import java.math.BigDecimal;
 
+
 public interface IGestioneScuolaService {
     String generaPasswordTemporanea();
     String generaUsernameUnico(String nome, String cognome);

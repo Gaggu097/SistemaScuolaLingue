@@ -2,7 +2,9 @@ package org.gagandeepsuman.dao;
 
 import org.gagandeepsuman.entity.EntityLezione;
 import java.util.List;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class LezioneDAO extends GenericDAO<EntityLezione, Integer> {
 
 	public EntityLezione salvaLezione(EntityLezione lezione) {

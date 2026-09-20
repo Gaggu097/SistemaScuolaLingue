@@ -4,7 +4,9 @@ import org.gagandeepsuman.entity.EntityCorso;
 import org.gagandeepsuman.entity.EntityDocente;
 
 import java.util.List;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class DocenteDAO extends GenericDAO<EntityDocente, Integer> {
 
 	public EntityDocente salvaDocente(EntityDocente docente) {

@@ -2,7 +2,9 @@ package org.gagandeepsuman.dao;
 
 import org.gagandeepsuman.entity.EntityCredenziali;
 import org.hibernate.Session;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class CredenzialiDAO extends GenericDAO<EntityCredenziali, Integer> {
 
 	public EntityCredenziali salvaCredenziali(EntityCredenziali credenziali) {
@@ -25,7 +27,7 @@ public class CredenzialiDAO extends GenericDAO<EntityCredenziali, Integer> {
 		return deleteById(EntityCredenziali.class, id);
 	}
 
-	public static boolean esisteUsername(String username) {
+	public boolean esisteUsername(String username) {
 		try (Session session = sessionFactory.openSession()) {
 			String hql = "SELECT COUNT(c) FROM EntityCredenziali c WHERE c.username = :username";
 			Long count = session.createQuery(hql, Long.class)

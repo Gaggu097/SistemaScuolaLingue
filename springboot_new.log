@@ -1,0 +1,247 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ---------------< org.gagandeepsuman:SistemaScuolaLingue >---------------
+[INFO] Building SistemaScuolaLingue 1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:4.1.1:run (default-cli) > test-compile @ SistemaScuolaLingue >>>
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ SistemaScuolaLingue ---
+[INFO] Copying 18 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ SistemaScuolaLingue ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ SistemaScuolaLingue ---
+[INFO] skip non existing resourceDirectory /Users/gagandeepsuman/Library/CloudStorage/OneDrive-UniversitàdiNapoliFedericoII/Ingegneria del Software/Elaborato settembre 2026/SistemaScuolaLingue copy/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ SistemaScuolaLingue ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] <<< spring-boot:4.1.1:run (default-cli) < test-compile @ SistemaScuolaLingue <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:4.1.1:run (default-cli) @ SistemaScuolaLingue ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.1)
+
+16:09:49.572 [restartedMain] INFO  o.g.SistemaScuolaLingueApplication - Starting SistemaScuolaLingueApplication using Java 27 with PID 71703 (/Users/gagandeepsuman/Library/CloudStorage/OneDrive-UniversitàdiNapoliFedericoII/Ingegneria del Software/Elaborato settembre 2026/SistemaScuolaLingue copy/target/classes started by gagandeepsuman in /Users/gagandeepsuman/Library/CloudStorage/OneDrive-UniversitàdiNapoliFedericoII/Ingegneria del Software/Elaborato settembre 2026/SistemaScuolaLingue copy)
+16:09:49.574 [restartedMain] INFO  o.g.SistemaScuolaLingueApplication - No active profile set, falling back to 1 default profile: "default"
+16:09:50.559 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+16:09:50.560 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+16:09:50.560 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.24]
+16:09:50.862 [restartedMain] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+16:09:50.924 [restartedMain] INFO  org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.4.5.Final
+16:09:51.230 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+16:09:51.363 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6f7ba55b
+16:09:51.364 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+16:09:51.382 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+16:09:51.395 [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/gagandeepsuman]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.6
+	Default catalog/schema: gagandeepsuman/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+16:09:51.974 [restartedMain] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+16:09:52.118 [restartedMain] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+16:09:52.455 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+16:09:52.473 [restartedMain] INFO  o.g.SistemaScuolaLingueApplication - Started SistemaScuolaLingueApplication in 3.194 seconds (process running for 3.491)
+16:10:40.609 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+16:10:40.828 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        ec1_0.idcorso,
+        ec1_0.docenteiddocente,
+        ec1_0.costo,
+        ec1_0.linguacorso,
+        ec1_0.livellocorso,
+        ec1_0.numeroiscritti,
+        ec1_0.numeromaxpartecipanti 
+    from
+        corso ec1_0
+Hibernate: 
+    select
+        ec1_0.idcorso,
+        ec1_0.docenteiddocente,
+        ec1_0.costo,
+        ec1_0.linguacorso,
+        ec1_0.livellocorso,
+        ec1_0.numeroiscritti,
+        ec1_0.numeromaxpartecipanti 
+    from
+        corso ec1_0
+16:10:40.850 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+Hibernate: 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+16:10:40.855 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+Hibernate: 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+16:10:40.855 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+Hibernate: 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+16:10:40.856 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+Hibernate: 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+16:10:40.856 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+Hibernate: 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+16:10:40.857 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+Hibernate: 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+java.lang.NullPointerException: Cannot invoke "org.hibernate.SessionFactory.openSession()" because "this.sessionFactory" is null
+	at org.gagandeepsuman.dao.GenericDAO.save(GenericDAO.java:22)
+	at org.gagandeepsuman.dao.ClienteDAO.salvaCliente(ClienteDAO.java:10)
+	at org.gagandeepsuman.controller.GestioneScuolaController.registrazioneCliente(GestioneScuolaController.java:108)
+	at org.gagandeepsuman.web.WebController.registrareCliente(WebController.java:133)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:583)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:252)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:184)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:934)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:853)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:86)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:649)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:132)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:59)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:110)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:535)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:86)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:71)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:347)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:406)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:71)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1307)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:2036)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:74)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:949)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:483)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:74)
+	at java.base/java.lang.Thread.run(Thread.java:1527)
+[gsController] Errore salvataggio DB16:16:29.974 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+16:16:29.976 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

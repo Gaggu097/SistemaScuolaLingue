@@ -5,7 +5,9 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 import java.util.List;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class CorsoDAO extends GenericDAO<EntityCorso, Integer> {
 
 	public EntityCorso salvaCorso(EntityCorso corso) {

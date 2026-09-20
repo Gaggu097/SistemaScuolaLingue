@@ -1,0 +1,55 @@
+# Docker .dockerignore file
+# Exclude files/directories that are not needed in the Docker image
+
+# Git
+.git
+.gitignore
+
+# Maven
+target/
+.mvn/
+pom.xml.bak
+
+# IDE
+.idea/
+*.iml
+
+# Logs
+*.log
+springboot*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Backup files
+*.bak
+*.orig
+*~
+
+# Documentation
+README.md
+Changes.md
+TODO.md
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Cache
+.cache/
+npm/
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Environment files (if you have any)
+.env
+.env.*
+
+# Docker files (we don't want to copy these into the image)
+Dockerfile
+docker-compose.yml
+.dockerignore

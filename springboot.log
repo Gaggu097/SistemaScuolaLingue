@@ -1,0 +1,1671 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ---------------< org.gagandeepsuman:SistemaScuolaLingue >---------------
+[INFO] Building SistemaScuolaLingue 1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:4.1.1:run (default-cli) > test-compile @ SistemaScuolaLingue >>>
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ SistemaScuolaLingue ---
+[INFO] Copying 24 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ SistemaScuolaLingue ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ SistemaScuolaLingue ---
+[INFO] skip non existing resourceDirectory /Users/gagandeepsuman/Library/CloudStorage/OneDrive-UniversitàdiNapoliFedericoII/Ingegneria del Software/Elaborato settembre 2026/SistemaScuolaLingue copy/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ SistemaScuolaLingue ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 10 source files with javac [debug release 26] to target/test-classes
+[INFO] 
+[INFO] <<< spring-boot:4.1.1:run (default-cli) < test-compile @ SistemaScuolaLingue <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:4.1.1:run (default-cli) @ SistemaScuolaLingue ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.1)
+
+17:11:58.359 [restartedMain] INFO  o.g.SistemaScuolaLingueApplication - Starting SistemaScuolaLingueApplication using Java 27 with PID 74264 (/Users/gagandeepsuman/Library/CloudStorage/OneDrive-UniversitàdiNapoliFedericoII/Ingegneria del Software/Elaborato settembre 2026/SistemaScuolaLingue copy/target/classes started by gagandeepsuman in /Users/gagandeepsuman/Library/CloudStorage/OneDrive-UniversitàdiNapoliFedericoII/Ingegneria del Software/Elaborato settembre 2026/SistemaScuolaLingue copy)
+17:11:58.360 [restartedMain] INFO  o.g.SistemaScuolaLingueApplication - No active profile set, falling back to 1 default profile: "default"
+17:11:59.221 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+17:11:59.222 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+17:11:59.222 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.24]
+17:11:59.377 [restartedMain] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+17:11:59.412 [restartedMain] INFO  org.hibernate.orm.core - HHH000001: Hibernate ORM core version 7.4.5.Final
+17:11:59.640 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+17:11:59.743 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@58a36b5
+17:11:59.744 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+17:11:59.766 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+17:11:59.777 [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/gagandeepsuman]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.6
+	Default catalog/schema: gagandeepsuman/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+17:12:00.257 [restartedMain] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+17:12:00.352 [restartedMain] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+17:12:00.656 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+17:12:00.670 [restartedMain] INFO  o.g.SistemaScuolaLingueApplication - Started SistemaScuolaLingueApplication in 2.563 seconds (process running for 2.827)
+17:12:24.709 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+17:12:39.442 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        ec1_0.idcorso,
+        ec1_0.docenteiddocente,
+        ec1_0.costo,
+        ec1_0.linguacorso,
+        ec1_0.livellocorso,
+        ec1_0.numeroiscritti,
+        ec1_0.numeromaxpartecipanti 
+    from
+        corso ec1_0
+Hibernate: 
+    select
+        ec1_0.idcorso,
+        ec1_0.docenteiddocente,
+        ec1_0.costo,
+        ec1_0.linguacorso,
+        ec1_0.livellocorso,
+        ec1_0.numeroiscritti,
+        ec1_0.numeromaxpartecipanti 
+    from
+        corso ec1_0
+17:12:39.458 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+Hibernate: 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+17:12:39.461 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+Hibernate: 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+17:12:39.461 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+Hibernate: 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+17:12:39.462 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+Hibernate: 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+17:12:39.462 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+Hibernate: 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+17:12:39.463 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+Hibernate: 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+17:12:59.455 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - 
+    select
+        ec1_0.idcorso,
+        ec1_0.docenteiddocente,
+        ec1_0.costo,
+        ec1_0.linguacorso,
+        ec1_0.livellocorso,
+        ec1_0.numeroiscritti,
+        ec1_0.numeromaxpartecipanti 
+    from
+        corso ec1_0
+Hibernate: 
+    select
+        ec1_0.idcorso,
+        ec1_0.docenteiddocente,
+        ec1_0.costo,
+        ec1_0.linguacorso,
+        ec1_0.livellocorso,
+        ec1_0.numeroiscritti,
+        ec1_0.numeromaxpartecipanti 
+    from
+        corso ec1_0
+17:13:10.355 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        ec1_0.idcliente,
+        ec1_0.cognome,
+        ec1_0.datanascita,
+        ec1_0.email,
+        ec1_0.nome,
+        ec1_0.numerotelefono 
+    from
+        cliente ec1_0
+Hibernate: 
+    select
+        ec1_0.idcliente,
+        ec1_0.cognome,
+        ec1_0.datanascita,
+        ec1_0.email,
+        ec1_0.nome,
+        ec1_0.numerotelefono 
+    from
+        cliente ec1_0
+java.lang.NullPointerException: Cannot invoke "org.hibernate.SessionFactory.openSession()" because "this.sessionFactory" is null
+	at org.gagandeepsuman.dao.GenericDAO.save(GenericDAO.java:22)
+	at org.gagandeepsuman.dao.ClienteDAO.salvaCliente(ClienteDAO.java:10)
+	at org.gagandeepsuman.controller.GestioneScuolaController.registrazioneCliente(GestioneScuolaController.java:108)
+	at org.gagandeepsuman.web.WebController.registrareCliente(WebController.java:146)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:583)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:252)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:184)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:934)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:853)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:86)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:649)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:132)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:59)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:110)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:535)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:86)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:71)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:347)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:406)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:71)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1307)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:2036)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:74)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:949)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:483)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:74)
+	at java.base/java.lang.Thread.run(Thread.java:1527)
+[gsController] Errore salvataggio DB17:13:30.155 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - 
+    select
+        ec1_0.idcliente,
+        ec1_0.cognome,
+        ec1_0.datanascita,
+        ec1_0.email,
+        ec1_0.nome,
+        ec1_0.numerotelefono 
+    from
+        cliente ec1_0
+Hibernate: 
+    select
+        ec1_0.idcliente,
+        ec1_0.cognome,
+        ec1_0.datanascita,
+        ec1_0.email,
+        ec1_0.nome,
+        ec1_0.numerotelefono 
+    from
+        cliente ec1_0
+java.lang.NullPointerException: Cannot invoke "org.hibernate.SessionFactory.openSession()" because "this.sessionFactory" is null
+	at org.gagandeepsuman.dao.GenericDAO.save(GenericDAO.java:22)
+	at org.gagandeepsuman.dao.ClienteDAO.salvaCliente(ClienteDAO.java:10)
+	at org.gagandeepsuman.controller.GestioneScuolaController.registrazioneCliente(GestioneScuolaController.java:108)
+	at org.gagandeepsuman.web.WebController.registrareCliente(WebController.java:146)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:583)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:252)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:184)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:934)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:853)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:86)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:649)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:132)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:59)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:110)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:535)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:86)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:71)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:347)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:406)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:71)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1307)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:2036)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:74)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:949)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:483)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:74)
+	at java.base/java.lang.Thread.run(Thread.java:1527)
+[gsController] Errore salvataggio DB17:13:50.508 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        ec1_0.idcliente,
+        ec1_0.cognome,
+        ec1_0.datanascita,
+        ec1_0.email,
+        ec1_0.nome,
+        ec1_0.numerotelefono 
+    from
+        cliente ec1_0
+Hibernate: 
+    select
+        ec1_0.idcliente,
+        ec1_0.cognome,
+        ec1_0.datanascita,
+        ec1_0.email,
+        ec1_0.nome,
+        ec1_0.numerotelefono 
+    from
+        cliente ec1_0
+17:15:53.507 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - 
+    select
+        ec1_0.idcliente,
+        ec1_0.cognome,
+        ec1_0.datanascita,
+        ec1_0.email,
+        ec1_0.nome,
+        ec1_0.numerotelefono 
+    from
+        cliente ec1_0
+Hibernate: 
+    select
+        ec1_0.idcliente,
+        ec1_0.cognome,
+        ec1_0.datanascita,
+        ec1_0.email,
+        ec1_0.nome,
+        ec1_0.numerotelefono 
+    from
+        cliente ec1_0
+17:16:06.727 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - 
+    select
+        ec1_0.idcliente,
+        ec1_0.cognome,
+        ec1_0.datanascita,
+        ec1_0.email,
+        ec1_0.nome,
+        ec1_0.numerotelefono 
+    from
+        cliente ec1_0
+Hibernate: 
+    select
+        ec1_0.idcliente,
+        ec1_0.cognome,
+        ec1_0.datanascita,
+        ec1_0.email,
+        ec1_0.nome,
+        ec1_0.numerotelefono 
+    from
+        cliente ec1_0
+17:16:18.479 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        ei1_0.idiscrizione,
+        ei1_0.classeidclasse,
+        ei1_0.clienteidcliente,
+        ei1_0.corsoidcorso,
+        ei1_0.annoaccademico,
+        ei1_0.dataiscrizione,
+        ei1_0.deleted_at 
+    from
+        iscrizione ei1_0
+Hibernate: 
+    select
+        ei1_0.idiscrizione,
+        ei1_0.classeidclasse,
+        ei1_0.clienteidcliente,
+        ei1_0.corsoidcorso,
+        ei1_0.annoaccademico,
+        ei1_0.dataiscrizione,
+        ei1_0.deleted_at 
+    from
+        iscrizione ei1_0
+java.lang.NullPointerException: Cannot invoke "org.hibernate.SessionFactory.openSession()" because "this.sessionFactory" is null
+	at org.gagandeepsuman.dao.GenericDAO.findById(GenericDAO.java:36)
+	at org.gagandeepsuman.dao.ClienteDAO.trovaCliente(ClienteDAO.java:14)
+	at org.gagandeepsuman.controller.GestioneScuolaController.iscriversiAlCorso(GestioneScuolaController.java:155)
+	at org.gagandeepsuman.web.WebController.iscriversiAlCorso(WebController.java:192)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:583)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:252)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:184)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:934)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:853)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:86)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:649)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:132)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:59)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:110)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:535)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:86)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:71)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:347)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:406)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:71)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1307)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:2036)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:74)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:949)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:483)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:74)
+	at java.base/java.lang.Thread.run(Thread.java:1527)
+[gsController]Cliente non trovato
+17:16:35.546 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - 
+    select
+        ei1_0.idiscrizione,
+        ei1_0.classeidclasse,
+        ei1_0.clienteidcliente,
+        ei1_0.corsoidcorso,
+        ei1_0.annoaccademico,
+        ei1_0.dataiscrizione,
+        ei1_0.deleted_at 
+    from
+        iscrizione ei1_0
+Hibernate: 
+    select
+        ei1_0.idiscrizione,
+        ei1_0.classeidclasse,
+        ei1_0.clienteidcliente,
+        ei1_0.corsoidcorso,
+        ei1_0.annoaccademico,
+        ei1_0.dataiscrizione,
+        ei1_0.deleted_at 
+    from
+        iscrizione ei1_0
+java.lang.NullPointerException: Cannot invoke "org.hibernate.SessionFactory.openSession()" because "this.sessionFactory" is null
+	at org.gagandeepsuman.dao.GenericDAO.findById(GenericDAO.java:36)
+	at org.gagandeepsuman.dao.ClienteDAO.trovaCliente(ClienteDAO.java:14)
+	at org.gagandeepsuman.controller.GestioneScuolaController.iscriversiAlCorso(GestioneScuolaController.java:155)
+	at org.gagandeepsuman.web.WebController.iscriversiAlCorso(WebController.java:192)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:583)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:252)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:184)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:934)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:853)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:86)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:649)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:132)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:59)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:110)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:535)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:86)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:71)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:347)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:406)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:71)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1307)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:2036)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:74)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:949)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:483)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:74)
+	at java.base/java.lang.Thread.run(Thread.java:1527)
+[gsController]Cliente non trovato
+java.lang.NullPointerException: Cannot invoke "org.hibernate.SessionFactory.openSession()" because "this.sessionFactory" is null
+	at org.gagandeepsuman.dao.GenericDAO.findById(GenericDAO.java:36)
+	at org.gagandeepsuman.dao.ClienteDAO.trovaCliente(ClienteDAO.java:14)
+	at org.gagandeepsuman.controller.GestioneScuolaController.iscriversiAlCorso(GestioneScuolaController.java:155)
+	at org.gagandeepsuman.web.WebController.iscriversiAlCorso(WebController.java:192)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:583)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:252)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:184)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:934)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:853)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:86)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:649)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:132)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:59)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:110)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:535)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:86)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:71)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:347)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:406)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:71)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1307)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:2036)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:74)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:949)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:483)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:74)
+	at java.base/java.lang.Thread.run(Thread.java:1527)
+[gsController]Cliente non trovato
+17:23:37.883 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
+17:23:37.888 [Thread-1] INFO  o.a.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+17:23:37.897 [Thread-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+17:23:37.898 [Thread-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.1)
+
+17:23:37.963 [restartedMain] INFO  o.g.SistemaScuolaLingueApplication - Starting SistemaScuolaLingueApplication using Java 27 with PID 74264 (/Users/gagandeepsuman/Library/CloudStorage/OneDrive-UniversitàdiNapoliFedericoII/Ingegneria del Software/Elaborato settembre 2026/SistemaScuolaLingue copy/target/classes started by gagandeepsuman in /Users/gagandeepsuman/Library/CloudStorage/OneDrive-UniversitàdiNapoliFedericoII/Ingegneria del Software/Elaborato settembre 2026/SistemaScuolaLingue copy)
+17:23:37.963 [restartedMain] INFO  o.g.SistemaScuolaLingueApplication - No active profile set, falling back to 1 default profile: "default"
+17:23:38.107 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+17:23:38.107 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+17:23:38.107 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.24]
+17:23:38.146 [restartedMain] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+17:23:38.160 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Starting...
+17:23:38.213 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@621d5e2d
+17:23:38.214 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Start completed.
+17:23:38.223 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+17:23:38.227 [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/gagandeepsuman]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.6
+	Default catalog/schema: gagandeepsuman/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+17:23:38.237 [restartedMain] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+17:23:38.270 [restartedMain] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+17:23:38.362 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+17:23:38.365 [restartedMain] INFO  o.g.SistemaScuolaLingueApplication - Started SistemaScuolaLingueApplication in 0.415 seconds (process running for 700.552)
+17:27:27.435 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+17:34:40.937 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
+17:34:40.945 [Thread-5] INFO  o.a.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+17:34:40.953 [Thread-5] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown initiated...
+17:34:40.958 [Thread-5] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.1)
+
+17:34:41.051 [restartedMain] INFO  o.g.SistemaScuolaLingueApplication - Starting SistemaScuolaLingueApplication using Java 27 with PID 74264 (/Users/gagandeepsuman/Library/CloudStorage/OneDrive-UniversitàdiNapoliFedericoII/Ingegneria del Software/Elaborato settembre 2026/SistemaScuolaLingue copy/target/classes started by gagandeepsuman in /Users/gagandeepsuman/Library/CloudStorage/OneDrive-UniversitàdiNapoliFedericoII/Ingegneria del Software/Elaborato settembre 2026/SistemaScuolaLingue copy)
+17:34:41.051 [restartedMain] INFO  o.g.SistemaScuolaLingueApplication - No active profile set, falling back to 1 default profile: "default"
+17:34:41.215 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+17:34:41.215 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+17:34:41.215 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.24]
+17:34:41.256 [restartedMain] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+17:34:41.271 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Starting...
+17:34:41.340 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-3 - Added connection org.postgresql.jdbc.PgConnection@16829fec
+17:34:41.341 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Start completed.
+17:34:41.352 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+17:34:41.356 [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/gagandeepsuman]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.6
+	Default catalog/schema: gagandeepsuman/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+17:34:41.446 [restartedMain] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+17:34:41.515 [restartedMain] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+17:34:41.595 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+17:34:41.598 [restartedMain] INFO  o.g.SistemaScuolaLingueApplication - Started SistemaScuolaLingueApplication in 0.561 seconds (process running for 1363.813)
+17:40:25.101 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
+17:40:25.105 [Thread-9] INFO  o.a.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+17:40:25.110 [Thread-9] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Shutdown initiated...
+17:40:25.114 [Thread-9] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.1)
+
+17:40:25.197 [restartedMain] INFO  o.g.SistemaScuolaLingueApplication - Starting SistemaScuolaLingueApplication using Java 27 with PID 74264 (/Users/gagandeepsuman/Library/CloudStorage/OneDrive-UniversitàdiNapoliFedericoII/Ingegneria del Software/Elaborato settembre 2026/SistemaScuolaLingue copy/target/classes started by gagandeepsuman in /Users/gagandeepsuman/Library/CloudStorage/OneDrive-UniversitàdiNapoliFedericoII/Ingegneria del Software/Elaborato settembre 2026/SistemaScuolaLingue copy)
+17:40:25.197 [restartedMain] INFO  o.g.SistemaScuolaLingueApplication - No active profile set, falling back to 1 default profile: "default"
+17:40:25.414 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+17:40:25.414 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+17:40:25.414 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.24]
+17:40:25.453 [restartedMain] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+17:40:25.466 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-4 - Starting...
+17:40:25.542 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-4 - Added connection org.postgresql.jdbc.PgConnection@2f9d5004
+17:40:25.543 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-4 - Start completed.
+17:40:25.554 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+17:40:25.559 [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/gagandeepsuman]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.6
+	Default catalog/schema: gagandeepsuman/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+17:40:25.642 [restartedMain] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+17:40:25.702 [restartedMain] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+17:40:25.779 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+17:40:25.782 [restartedMain] INFO  o.g.SistemaScuolaLingueApplication - Started SistemaScuolaLingueApplication in 0.597 seconds (process running for 1708.013)
+17:40:27.185 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
+17:40:27.187 [Thread-13] INFO  o.a.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+17:40:27.190 [Thread-13] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-4 - Shutdown initiated...
+17:40:27.190 [Thread-13] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-4 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.1)
+
+17:40:27.241 [restartedMain] INFO  o.g.SistemaScuolaLingueApplication - Starting SistemaScuolaLingueApplication using Java 27 with PID 74264 (/Users/gagandeepsuman/Library/CloudStorage/OneDrive-UniversitàdiNapoliFedericoII/Ingegneria del Software/Elaborato settembre 2026/SistemaScuolaLingue copy/target/classes started by gagandeepsuman in /Users/gagandeepsuman/Library/CloudStorage/OneDrive-UniversitàdiNapoliFedericoII/Ingegneria del Software/Elaborato settembre 2026/SistemaScuolaLingue copy)
+17:40:27.241 [restartedMain] INFO  o.g.SistemaScuolaLingueApplication - No active profile set, falling back to 1 default profile: "default"
+17:40:27.359 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+17:40:27.359 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+17:40:27.359 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.24]
+17:40:27.389 [restartedMain] INFO  org.hibernate.orm.jpa - HHH008540: Processing PersistenceUnitInfo [name: default]
+17:40:27.400 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-5 - Starting...
+17:40:27.437 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-5 - Added connection org.postgresql.jdbc.PgConnection@5e9a102b
+17:40:27.437 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-5 - Start completed.
+17:40:27.438 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+17:40:27.440 [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/gagandeepsuman]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.6
+	Default catalog/schema: gagandeepsuman/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+17:40:27.507 [restartedMain] INFO  org.hibernate.orm.core - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+17:40:27.543 [restartedMain] WARN  o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+17:40:27.614 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+17:40:27.617 [restartedMain] INFO  o.g.SistemaScuolaLingueApplication - Started SistemaScuolaLingueApplication in 0.387 seconds (process running for 1709.848)
+17:42:28.446 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+17:42:39.710 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        ei1_0.idiscrizione,
+        ei1_0.classeidclasse,
+        ei1_0.clienteidcliente,
+        ei1_0.corsoidcorso,
+        ei1_0.annoaccademico,
+        ei1_0.dataiscrizione,
+        ei1_0.deleted_at 
+    from
+        iscrizione ei1_0 
+    where
+        ei1_0.deleted_at is null
+Hibernate: 
+    select
+        ei1_0.idiscrizione,
+        ei1_0.classeidclasse,
+        ei1_0.clienteidcliente,
+        ei1_0.corsoidcorso,
+        ei1_0.annoaccademico,
+        ei1_0.dataiscrizione,
+        ei1_0.deleted_at 
+    from
+        iscrizione ei1_0 
+    where
+        ei1_0.deleted_at is null
+17:42:39.730 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        ec1_0.idcliente,
+        ec1_0.cognome,
+        ec1_0.datanascita,
+        ec1_0.email,
+        ec1_0.nome,
+        ec1_0.numerotelefono 
+    from
+        cliente ec1_0 
+    where
+        ec1_0.idcliente=?
+Hibernate: 
+    select
+        ec1_0.idcliente,
+        ec1_0.cognome,
+        ec1_0.datanascita,
+        ec1_0.email,
+        ec1_0.nome,
+        ec1_0.numerotelefono 
+    from
+        cliente ec1_0 
+    where
+        ec1_0.idcliente=?
+17:42:39.735 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        ec1_0.idcorso,
+        ec1_0.docenteiddocente,
+        ec1_0.costo,
+        ec1_0.linguacorso,
+        ec1_0.livellocorso,
+        ec1_0.numeroiscritti,
+        ec1_0.numeromaxpartecipanti 
+    from
+        corso ec1_0 
+    where
+        ec1_0.idcorso=?
+Hibernate: 
+    select
+        ec1_0.idcorso,
+        ec1_0.docenteiddocente,
+        ec1_0.costo,
+        ec1_0.linguacorso,
+        ec1_0.livellocorso,
+        ec1_0.numeroiscritti,
+        ec1_0.numeromaxpartecipanti 
+    from
+        corso ec1_0 
+    where
+        ec1_0.idcorso=?
+17:42:39.738 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+Hibernate: 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+17:42:39.739 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        ec1_0.idcliente,
+        ec1_0.cognome,
+        ec1_0.datanascita,
+        ec1_0.email,
+        ec1_0.nome,
+        ec1_0.numerotelefono 
+    from
+        cliente ec1_0 
+    where
+        ec1_0.idcliente=?
+Hibernate: 
+    select
+        ec1_0.idcliente,
+        ec1_0.cognome,
+        ec1_0.datanascita,
+        ec1_0.email,
+        ec1_0.nome,
+        ec1_0.numerotelefono 
+    from
+        cliente ec1_0 
+    where
+        ec1_0.idcliente=?
+17:42:39.740 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        ec1_0.idcorso,
+        ec1_0.docenteiddocente,
+        ec1_0.costo,
+        ec1_0.linguacorso,
+        ec1_0.livellocorso,
+        ec1_0.numeroiscritti,
+        ec1_0.numeromaxpartecipanti 
+    from
+        corso ec1_0 
+    where
+        ec1_0.idcorso=?
+Hibernate: 
+    select
+        ec1_0.idcorso,
+        ec1_0.docenteiddocente,
+        ec1_0.costo,
+        ec1_0.linguacorso,
+        ec1_0.livellocorso,
+        ec1_0.numeroiscritti,
+        ec1_0.numeromaxpartecipanti 
+    from
+        corso ec1_0 
+    where
+        ec1_0.idcorso=?
+17:42:39.741 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+Hibernate: 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+17:42:39.742 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        ec1_0.idcliente,
+        ec1_0.cognome,
+        ec1_0.datanascita,
+        ec1_0.email,
+        ec1_0.nome,
+        ec1_0.numerotelefono 
+    from
+        cliente ec1_0 
+    where
+        ec1_0.idcliente=?
+Hibernate: 
+    select
+        ec1_0.idcliente,
+        ec1_0.cognome,
+        ec1_0.datanascita,
+        ec1_0.email,
+        ec1_0.nome,
+        ec1_0.numerotelefono 
+    from
+        cliente ec1_0 
+    where
+        ec1_0.idcliente=?
+17:42:39.743 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        ec1_0.idcorso,
+        ec1_0.docenteiddocente,
+        ec1_0.costo,
+        ec1_0.linguacorso,
+        ec1_0.livellocorso,
+        ec1_0.numeroiscritti,
+        ec1_0.numeromaxpartecipanti 
+    from
+        corso ec1_0 
+    where
+        ec1_0.idcorso=?
+Hibernate: 
+    select
+        ec1_0.idcorso,
+        ec1_0.docenteiddocente,
+        ec1_0.costo,
+        ec1_0.linguacorso,
+        ec1_0.livellocorso,
+        ec1_0.numeroiscritti,
+        ec1_0.numeromaxpartecipanti 
+    from
+        corso ec1_0 
+    where
+        ec1_0.idcorso=?
+17:42:39.743 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+Hibernate: 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+17:42:39.744 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        ec1_0.idcliente,
+        ec1_0.cognome,
+        ec1_0.datanascita,
+        ec1_0.email,
+        ec1_0.nome,
+        ec1_0.numerotelefono 
+    from
+        cliente ec1_0 
+    where
+        ec1_0.idcliente=?
+Hibernate: 
+    select
+        ec1_0.idcliente,
+        ec1_0.cognome,
+        ec1_0.datanascita,
+        ec1_0.email,
+        ec1_0.nome,
+        ec1_0.numerotelefono 
+    from
+        cliente ec1_0 
+    where
+        ec1_0.idcliente=?
+17:42:39.744 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        ec1_0.idcorso,
+        ec1_0.docenteiddocente,
+        ec1_0.costo,
+        ec1_0.linguacorso,
+        ec1_0.livellocorso,
+        ec1_0.numeroiscritti,
+        ec1_0.numeromaxpartecipanti 
+    from
+        corso ec1_0 
+    where
+        ec1_0.idcorso=?
+Hibernate: 
+    select
+        ec1_0.idcorso,
+        ec1_0.docenteiddocente,
+        ec1_0.costo,
+        ec1_0.linguacorso,
+        ec1_0.livellocorso,
+        ec1_0.numeroiscritti,
+        ec1_0.numeromaxpartecipanti 
+    from
+        corso ec1_0 
+    where
+        ec1_0.idcorso=?
+17:42:39.745 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+Hibernate: 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+17:42:39.746 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        ec1_0.idcliente,
+        ec1_0.cognome,
+        ec1_0.datanascita,
+        ec1_0.email,
+        ec1_0.nome,
+        ec1_0.numerotelefono 
+    from
+        cliente ec1_0 
+    where
+        ec1_0.idcliente=?
+Hibernate: 
+    select
+        ec1_0.idcliente,
+        ec1_0.cognome,
+        ec1_0.datanascita,
+        ec1_0.email,
+        ec1_0.nome,
+        ec1_0.numerotelefono 
+    from
+        cliente ec1_0 
+    where
+        ec1_0.idcliente=?
+17:42:39.746 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        ec1_0.idcorso,
+        ec1_0.docenteiddocente,
+        ec1_0.costo,
+        ec1_0.linguacorso,
+        ec1_0.livellocorso,
+        ec1_0.numeroiscritti,
+        ec1_0.numeromaxpartecipanti 
+    from
+        corso ec1_0 
+    where
+        ec1_0.idcorso=?
+Hibernate: 
+    select
+        ec1_0.idcorso,
+        ec1_0.docenteiddocente,
+        ec1_0.costo,
+        ec1_0.linguacorso,
+        ec1_0.livellocorso,
+        ec1_0.numeroiscritti,
+        ec1_0.numeromaxpartecipanti 
+    from
+        corso ec1_0 
+    where
+        ec1_0.idcorso=?
+17:42:39.747 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+Hibernate: 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+17:42:39.748 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        ec1_0.idcliente,
+        ec1_0.cognome,
+        ec1_0.datanascita,
+        ec1_0.email,
+        ec1_0.nome,
+        ec1_0.numerotelefono 
+    from
+        cliente ec1_0 
+    where
+        ec1_0.idcliente=?
+Hibernate: 
+    select
+        ec1_0.idcliente,
+        ec1_0.cognome,
+        ec1_0.datanascita,
+        ec1_0.email,
+        ec1_0.nome,
+        ec1_0.numerotelefono 
+    from
+        cliente ec1_0 
+    where
+        ec1_0.idcliente=?
+17:42:39.749 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        ec1_0.idcorso,
+        ec1_0.docenteiddocente,
+        ec1_0.costo,
+        ec1_0.linguacorso,
+        ec1_0.livellocorso,
+        ec1_0.numeroiscritti,
+        ec1_0.numeromaxpartecipanti 
+    from
+        corso ec1_0 
+    where
+        ec1_0.idcorso=?
+Hibernate: 
+    select
+        ec1_0.idcorso,
+        ec1_0.docenteiddocente,
+        ec1_0.costo,
+        ec1_0.linguacorso,
+        ec1_0.livellocorso,
+        ec1_0.numeroiscritti,
+        ec1_0.numeromaxpartecipanti 
+    from
+        corso ec1_0 
+    where
+        ec1_0.idcorso=?
+17:42:39.750 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+Hibernate: 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+17:42:39.750 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        ec1_0.idcliente,
+        ec1_0.cognome,
+        ec1_0.datanascita,
+        ec1_0.email,
+        ec1_0.nome,
+        ec1_0.numerotelefono 
+    from
+        cliente ec1_0 
+    where
+        ec1_0.idcliente=?
+Hibernate: 
+    select
+        ec1_0.idcliente,
+        ec1_0.cognome,
+        ec1_0.datanascita,
+        ec1_0.email,
+        ec1_0.nome,
+        ec1_0.numerotelefono 
+    from
+        cliente ec1_0 
+    where
+        ec1_0.idcliente=?
+17:42:39.751 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        ec1_0.idcorso,
+        ec1_0.docenteiddocente,
+        ec1_0.costo,
+        ec1_0.linguacorso,
+        ec1_0.livellocorso,
+        ec1_0.numeroiscritti,
+        ec1_0.numeromaxpartecipanti 
+    from
+        corso ec1_0 
+    where
+        ec1_0.idcorso=?
+Hibernate: 
+    select
+        ec1_0.idcorso,
+        ec1_0.docenteiddocente,
+        ec1_0.costo,
+        ec1_0.linguacorso,
+        ec1_0.livellocorso,
+        ec1_0.numeroiscritti,
+        ec1_0.numeromaxpartecipanti 
+    from
+        corso ec1_0 
+    where
+        ec1_0.idcorso=?
+17:42:39.752 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+Hibernate: 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+17:42:39.753 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        ec1_0.idcliente,
+        ec1_0.cognome,
+        ec1_0.datanascita,
+        ec1_0.email,
+        ec1_0.nome,
+        ec1_0.numerotelefono 
+    from
+        cliente ec1_0 
+    where
+        ec1_0.idcliente=?
+Hibernate: 
+    select
+        ec1_0.idcliente,
+        ec1_0.cognome,
+        ec1_0.datanascita,
+        ec1_0.email,
+        ec1_0.nome,
+        ec1_0.numerotelefono 
+    from
+        cliente ec1_0 
+    where
+        ec1_0.idcliente=?
+17:42:39.753 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        ec1_0.idcorso,
+        ec1_0.docenteiddocente,
+        ec1_0.costo,
+        ec1_0.linguacorso,
+        ec1_0.livellocorso,
+        ec1_0.numeroiscritti,
+        ec1_0.numeromaxpartecipanti 
+    from
+        corso ec1_0 
+    where
+        ec1_0.idcorso=?
+Hibernate: 
+    select
+        ec1_0.idcorso,
+        ec1_0.docenteiddocente,
+        ec1_0.costo,
+        ec1_0.linguacorso,
+        ec1_0.livellocorso,
+        ec1_0.numeroiscritti,
+        ec1_0.numeromaxpartecipanti 
+    from
+        corso ec1_0 
+    where
+        ec1_0.idcorso=?
+17:42:39.754 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+Hibernate: 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+17:42:39.754 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        ec1_0.idcliente,
+        ec1_0.cognome,
+        ec1_0.datanascita,
+        ec1_0.email,
+        ec1_0.nome,
+        ec1_0.numerotelefono 
+    from
+        cliente ec1_0 
+    where
+        ec1_0.idcliente=?
+Hibernate: 
+    select
+        ec1_0.idcliente,
+        ec1_0.cognome,
+        ec1_0.datanascita,
+        ec1_0.email,
+        ec1_0.nome,
+        ec1_0.numerotelefono 
+    from
+        cliente ec1_0 
+    where
+        ec1_0.idcliente=?
+17:42:39.755 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        ec1_0.idcorso,
+        ec1_0.docenteiddocente,
+        ec1_0.costo,
+        ec1_0.linguacorso,
+        ec1_0.livellocorso,
+        ec1_0.numeroiscritti,
+        ec1_0.numeromaxpartecipanti 
+    from
+        corso ec1_0 
+    where
+        ec1_0.idcorso=?
+Hibernate: 
+    select
+        ec1_0.idcorso,
+        ec1_0.docenteiddocente,
+        ec1_0.costo,
+        ec1_0.linguacorso,
+        ec1_0.livellocorso,
+        ec1_0.numeroiscritti,
+        ec1_0.numeromaxpartecipanti 
+    from
+        corso ec1_0 
+    where
+        ec1_0.idcorso=?
+17:42:39.755 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+Hibernate: 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+17:42:39.756 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        ec1_0.idcliente,
+        ec1_0.cognome,
+        ec1_0.datanascita,
+        ec1_0.email,
+        ec1_0.nome,
+        ec1_0.numerotelefono 
+    from
+        cliente ec1_0 
+    where
+        ec1_0.idcliente=?
+Hibernate: 
+    select
+        ec1_0.idcliente,
+        ec1_0.cognome,
+        ec1_0.datanascita,
+        ec1_0.email,
+        ec1_0.nome,
+        ec1_0.numerotelefono 
+    from
+        cliente ec1_0 
+    where
+        ec1_0.idcliente=?
+17:42:39.756 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        ec1_0.idcorso,
+        ec1_0.docenteiddocente,
+        ec1_0.costo,
+        ec1_0.linguacorso,
+        ec1_0.livellocorso,
+        ec1_0.numeroiscritti,
+        ec1_0.numeromaxpartecipanti 
+    from
+        corso ec1_0 
+    where
+        ec1_0.idcorso=?
+Hibernate: 
+    select
+        ec1_0.idcorso,
+        ec1_0.docenteiddocente,
+        ec1_0.costo,
+        ec1_0.linguacorso,
+        ec1_0.livellocorso,
+        ec1_0.numeroiscritti,
+        ec1_0.numeromaxpartecipanti 
+    from
+        corso ec1_0 
+    where
+        ec1_0.idcorso=?
+17:42:39.757 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+Hibernate: 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+java.lang.NullPointerException: Cannot invoke "org.hibernate.SessionFactory.openSession()" because "this.sessionFactory" is null
+	at org.gagandeepsuman.dao.GenericDAO.findAll(GenericDAO.java:48)
+	at org.gagandeepsuman.dao.CorsoDAO.trovaTuttiCorsi(CorsoDAO.java:22)
+	at org.gagandeepsuman.controller.GestioneScuolaController.consultareStatisticheCorsi(GestioneScuolaController.java:440)
+	at org.gagandeepsuman.web.WebController.consultareStatisticheCorsi(WebController.java:753)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:583)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:252)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:184)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:934)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:853)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:86)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:132)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:59)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:110)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:111)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:535)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:86)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:71)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:347)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:406)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:71)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1307)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:2036)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:74)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:949)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:483)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:74)
+	at java.base/java.lang.Thread.run(Thread.java:1527)
+[gsController] Nessun corso trovato.
+17:43:17.470 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        ec1_0.idcorso,
+        ec1_0.docenteiddocente,
+        ec1_0.costo,
+        ec1_0.linguacorso,
+        ec1_0.livellocorso,
+        ec1_0.numeroiscritti,
+        ec1_0.numeromaxpartecipanti 
+    from
+        corso ec1_0
+Hibernate: 
+    select
+        ec1_0.idcorso,
+        ec1_0.docenteiddocente,
+        ec1_0.costo,
+        ec1_0.linguacorso,
+        ec1_0.livellocorso,
+        ec1_0.numeroiscritti,
+        ec1_0.numeromaxpartecipanti 
+    from
+        corso ec1_0
+17:43:17.474 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+Hibernate: 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+17:43:17.475 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+Hibernate: 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+17:43:17.475 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+Hibernate: 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+17:43:17.476 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+Hibernate: 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+17:43:17.476 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+Hibernate: 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+17:43:17.477 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+Hibernate: 
+    select
+        ed1_0.iddocente,
+        ed1_0.cognome,
+        ed1_0.nome 
+    from
+        docente ed1_0 
+    where
+        ed1_0.iddocente=?
+17:44:04.500 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-5 - Shutdown initiated...
+17:44:04.501 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-5 - Shutdown completed.

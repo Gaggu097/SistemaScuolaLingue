@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}">Menu Segreteria</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/custom.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mb-4" th:text="${title}">Menu Segreteria</h1>
+
+        <div class="list-group mb-4">
+            <a href="/segreteria/registrare-pagamento" class="list-group-item list-group-item-action">Registrare Pagamento</a>
+            <a href="/segreteria/annullare-iscrizione" class="list-group-item list-group-item-action">Annullare Iscrizione</a>
+            <a href="/segreteria/registrare-rimborso" class="list-group-item list-group-item-action">Registrare Rimborso</a>
+            <a href="/segreteria/annullare-lezione" class="list-group-item list-group-item-action">Annullare Lezione</a>
+            <a href="/segreteria/consultare-iscritti" class="list-group-item list-group-item-action">Consultare Iscritti</a>
+            <a href="/segreteria/consultare-statistiche-corsi" class="list-group-item list-group-item-action">Consultare Statistiche Corsi</a>
+        </div>
+
+        <a href="/" class="btn btn-secondary">Torna al Menu Principale</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

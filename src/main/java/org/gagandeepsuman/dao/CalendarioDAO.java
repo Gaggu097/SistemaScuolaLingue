@@ -1,7 +1,9 @@
 package org.gagandeepsuman.dao;
 
 import org.gagandeepsuman.entity.EntityCalendarioLezioni;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class CalendarioDAO extends GenericDAO<EntityCalendarioLezioni, Integer> {
 
 	public EntityCalendarioLezioni salvaCalendario(EntityCalendarioLezioni calendario) {

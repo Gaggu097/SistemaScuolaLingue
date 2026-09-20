@@ -3,7 +3,9 @@ package org.gagandeepsuman.dao;
 import org.gagandeepsuman.entity.EntityPagamento;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class PagamentoDAO extends GenericDAO<EntityPagamento, Integer> {
 
 	public EntityPagamento salvaPagamento(EntityPagamento pagamento) {

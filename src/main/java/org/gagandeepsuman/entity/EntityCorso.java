@@ -52,10 +52,10 @@ public class EntityCorso implements Serializable {
 	@org.hibernate.annotations.GenericGenerator(name="DOMAINCLASSES_ENTITYCORSO_ID_GENERATOR")
 	private int ID;
 	
-	@Column(name="linguaCorso", nullable=true, length=255)
+	@Column(name="linguacorso", nullable=true, length=255)
 	private String linguaCorso;
 	
-	@Column(name="livelloCorso", nullable=true, length=255)
+	@Column(name="livellocorso", nullable=true, length=255)
 	private String livelloCorso;
 	
 	@Column(name="numeromaxpartecipanti", nullable=false, length=10)

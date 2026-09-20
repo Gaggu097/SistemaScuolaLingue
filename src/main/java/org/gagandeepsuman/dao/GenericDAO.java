@@ -3,22 +3,17 @@ package org.gagandeepsuman.dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class GenericDAO<T, ID> implements IDAO<T, ID> {
 
-    protected static SessionFactory sessionFactory;
+    @Autowired
 
-    static {
-        try {
-            sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
-        } catch (Exception e) {
-            System.err.println("Errore durante l'inizializzazione della SessionFactory: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
+    protected SessionFactory sessionFactory;
 
     // restituisce ID elemento appena creato
     @Override
@@ -52,7 +47,7 @@ public class GenericDAO<T, ID> implements IDAO<T, ID> {
     //public <T> List<T> findAll(Class<T> clazz) {
         try (Session session = sessionFactory.openSession()) {
             String hql = "FROM " + clazz.getSimpleName();
-            return session.createQuery(hql, clazz).getResultList();
+            return (List<T>) session.createQuery(hql).getResultList();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -107,4 +102,5 @@ public class GenericDAO<T, ID> implements IDAO<T, ID> {
             return false;
         }
     }
+
 }

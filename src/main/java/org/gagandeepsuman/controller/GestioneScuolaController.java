@@ -5,6 +5,7 @@ import org.gagandeepsuman.dao.*;
 import org.gagandeepsuman.dao.DAOFactory;
 import org.gagandeepsuman.entity.*;
 import org.gagandeepsuman.service.IGestioneScuolaService;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -18,6 +19,7 @@ import java.text.Normalizer;
 import java.util.Locale;
 import java.security.SecureRandom;
 
+@Service
 public class GestioneScuolaController implements IGestioneScuolaService {
 
     public String generaPasswordTemporanea() {
@@ -44,7 +46,8 @@ public class GestioneScuolaController implements IGestioneScuolaService {
         int counter = 1;
 
         // 2. Check DB uniqueness via DAO and append counter if taken
-        while (CredenzialiDAO.esisteUsername(candidateUsername)) {
+        CredenzialiDAO credenzialiDAO = DAOFactory.getCredenzialiDAO();
+        while (credenzialiDAO.esisteUsername(candidateUsername)) {
             candidateUsername = baseUsername + counter; // e.g., mario.rossi1, mario.rossi2
             counter++;
         }
@@ -180,16 +183,8 @@ public class GestioneScuolaController implements IGestioneScuolaService {
         System.out.printf("ID: %d | Lingua Corso: %s |Livello Corso: %s |Costo: €%.2f | Posti Max: %d | Nome Docente Corso: %s | Cognome Docente Corso: %s%n",
                 eC.getID(), eC.getLinguaCorso(), eC.getLivelloCorso(), eC.getCosto(), eC.getNumeroMassimoPartecipanti(), eDoc.getCognome(), eDoc.getNome());
 
-        String inputConfermaUtente;
-        Scanner scanner = new Scanner(System.in);
-        inputConfermaUtente = scanner.nextLine();
-        if (inputConfermaUtente == null) {
-            System.err.println("[gsController]Scegli tra valori validi Y o n");
-            return false;
-        }
-        // conferma iscrizione da parte del cliente
-        // se Y
-        else if (inputConfermaUtente.equalsIgnoreCase("y")) { // caso Y o y
+        // Assume confirmation is given for web
+        // Skip scanner input
             if ( new BoundaryTempo().isIscrizioneAperta() ){
                 // S
                 System.out.println("\nIscrizioni Aperte\n!");
@@ -234,15 +229,6 @@ public class GestioneScuolaController implements IGestioneScuolaService {
                 System.out.println("[BCliente]Iscrizioni Chiuse\nNon si può iscrivere al corso!!");
                 return false;
             }
-        } else if(inputConfermaUtente.equalsIgnoreCase("n")) { // caso N o n
-            // se n
-            System.out.println("\n[BCliente]Iscrizione Annullata dal Cliente\n");
-            return false;
-        }
-        else{
-            System.out.println("\n[BCliente]Scelta Cliente non valida\n");
-            return false;
-        }
         // throw new UnsupportedOperationException();
     }
 
