@@ -1,7 +1,12 @@
 package org.gagandeepsuman.dao;
 
+import org.gagandeepsuman.entity.EntityCorso;
 import org.gagandeepsuman.entity.EntityDocente;
 
+import java.util.List;
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class DocenteDAO extends GenericDAO<EntityDocente, Integer> {
 
 	public EntityDocente salvaDocente(EntityDocente docente) {
@@ -10,6 +15,10 @@ public class DocenteDAO extends GenericDAO<EntityDocente, Integer> {
 
 	public EntityDocente trovaDocente(int id) {
 		return findById(EntityDocente.class, id);
+	}
+
+	public List<EntityDocente> trovaTuttiDocenti() {
+		return findAll(EntityDocente.class);
 	}
 
 	public EntityDocente aggiornaDocente(EntityDocente docente) {
@@ -23,29 +32,3 @@ public class DocenteDAO extends GenericDAO<EntityDocente, Integer> {
 		return deleteById(EntityDocente.class, id);
 	}
 }
-
-/*
-public class DocenteDAO {
-
-	public void salvaDocente() {
-		// TODO - implement DocenteDAO.salvaDocente
-		throw new UnsupportedOperationException();
-	}
-
-	public void trovaDocente() {
-		// TODO - implement DocenteDAO.trovaDocente
-		throw new UnsupportedOperationException();
-	}
-
-	public void aggiornaDocente() {
-		// TODO - implement DocenteDAO.aggiornaDocente
-		throw new UnsupportedOperationException();
-	}
-
-	public void eliminaDocente() {
-		// TODO - implement DocenteDAO.eliminaDocente
-		throw new UnsupportedOperationException();
-	}
-
-}
- */

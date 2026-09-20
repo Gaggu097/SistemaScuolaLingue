@@ -2,7 +2,9 @@ package org.gagandeepsuman.dao;
 
 import org.gagandeepsuman.entity.EntityLezione;
 import java.util.List;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class LezioneDAO extends GenericDAO<EntityLezione, Integer> {
 
 	public EntityLezione salvaLezione(EntityLezione lezione) {
@@ -26,34 +28,3 @@ public class LezioneDAO extends GenericDAO<EntityLezione, Integer> {
 	}
 	public boolean eliminaLezionePerId(int id) { return deleteById(EntityLezione.class, id); }
 }
-
-/*
-public class LezioneDAO {
-
-	public void salvaLezione() {
-		// TODO - implement LezioneDAO.salvaLezione
-		throw new UnsupportedOperationException();
-	}
-
-	public void trovaLezione() {
-		// TODO - implement LezioneDAO.trovaLezione
-		throw new UnsupportedOperationException();
-	}
-
-	public void aggiornaLezione() {
-		// TODO - implement LezioneDAO.aggiornaLezione
-		throw new UnsupportedOperationException();
-	}
-
-	public void eliminaLezione() {
-		// TODO - implement LezioneDAO.eliminaLezione
-		throw new UnsupportedOperationException();
-	}
-
-	public void trovaLezioni() {
-		// TODO - implement LezioneDAO.trovaLezioni
-		throw new UnsupportedOperationException();
-	}
-
-}
-*/

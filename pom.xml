@@ -12,8 +12,22 @@
         <maven.compiler.source>26</maven.compiler.source>
         <maven.compiler.target>26</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring-boot.version>4.1.1</spring-boot.version>
     </properties>
+    <dependencyManagement>
         <dependencies>
+            <dependency>
+
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <dependencies>
+
             <!-- JUnit Per testing in java-->
                 <dependency>
                     <groupId>org.junit.jupiter</groupId>
@@ -32,8 +46,61 @@
                 <dependency>
                     <groupId>org.hibernate.orm</groupId>
                     <artifactId>hibernate-core</artifactId>
-                    <version>6.4.4.Final</version>
                 </dependency>
+                <!-- Jakarta Persistence API -->
+                <dependency>
+                    <groupId>jakarta.persistence</groupId>
+                    <artifactId>jakarta.persistence-api</artifactId>
+                    <version>3.2.0</version>
+                </dependency>
+
+                <!-- JAXB for Hibernate configuration parsing (needed for Java 9+) -->
+                <dependency>
+                    <groupId>jakarta.xml.bind</groupId>
+                    <artifactId>jakarta.xml.bind-api</artifactId>
+                    <version>4.0.5</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.glassfish.jaxb</groupId>
+                    <artifactId>jaxb-runtime</artifactId>
+                    <version>4.0.9</version>
+                </dependency>
+                
+
+                <!-- JavaMail per l'invio reale di Email -->
+                <dependency>
+                    <groupId>org.eclipse.angus</groupId>
+                    <artifactId>jakarta.mail</artifactId>
+                    <version>2.0.5</version>
+                </dependency>
+
+                <!-- Spring Boot Starters -->
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-web</artifactId>
+                    <version>4.1.1</version>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-data-jpa</artifactId>
+                    <version>4.1.1</version>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-thymeleaf</artifactId>
+                    <version>4.1.1</version>
+                </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -43,19 +110,15 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.15.0</version>
                 <configuration>
-                    <annotationProcessorPaths>
-                        <path>
-                            <groupId>org.hibernate.orm</groupId>
-                            <artifactId>hibernate-processor</artifactId>
-                            <version>7.4.8.Final</version>
-                        </path>
-                    </annotationProcessorPaths>
-                    <!-- This setting is required for the hibernate-processor dependencies to
-                         also be managed by <dependencyManagement> rules, if any.
-                         More information is available in Maven compiler plugin documentation:
-                         https://maven.apache.org/plugins/maven-compiler-plugin/compile-mojo.html#annotationProcessorPathsUseDepMgmt -->
-                    <annotationProcessorPathsUseDepMgmt>true</annotationProcessorPathsUseDepMgmt>
+                    <release>26</release>
+                    <source>25</source>
+                    <target>25</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
             </plugin>
         </plugins>
     </build>

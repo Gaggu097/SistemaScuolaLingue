@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}">Catalogo Corsi</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/custom.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mb-4" th:text="${title}">Catalogo Corsi</h1>
+
+        <div th:if="${message}" class="alert" th:classappend="${messageType} == 'success' ? 'alert-success' : 'alert-danger'">
+            <p th:text="${message}"></p>
+        </div>
+
+        <div th:if="${corsi == null or corsi.isEmpty()}">
+            <div class="alert alert-info">
+                Nessun corso attualmente disponibile.
+            </div>
+        </div>
+
+        <div th:unless="${corsi == null or corsi.isEmpty()}">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Lingua</th>
+                            <th>Livello</th>
+                            <th>Costo (€)</th>
+                            <th>Posti Massimi</th>
+                            <th>Posti Disponibili</th>
+                            <th>Docente</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="corso : ${corsi}">
+                            <td th:text="${corso.id}">1</td>
+                            <td th:text="${corso.linguaCorso}">Inglese</td>
+                            <td th:text="${corso.livelloCorso}">B1</td>
+                            <td th:text="${#numbers.formatDecimal(corso.costo, 1, 2)}">250.00</td>
+                            <td th:text="${corso.numeroMassimoPartecipanti}">20</td>
+                            <td th:text="${corso.disponibili}">15</td>
+                            <td th:text="${corso.docenteCognome} + ' ' + ${corso.docenteNome}">Rossi Mario</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <a href="/cliente" class="btn btn-secondary">Torna al Menu Cliente</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

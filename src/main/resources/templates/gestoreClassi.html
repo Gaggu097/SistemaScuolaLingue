@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}">Gestione Classi</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/custom.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mb-4" th:text="${title}">Gestione Classi</h1>
+
+        <div th:if="${message}" class="alert" th:classappend="${messageType} == 'success' ? 'alert-success' :
+                                 (${messageType} == 'error' ? 'alert-danger' : 'alert-info')">
+            <p th:text="${message}"></p>
+        </div>
+
+        <div th:if="${classi == null or classi.isEmpty()}">
+            <div class="alert alert-info">
+                Nessuna classe presente nel sistema.
+            </div>
+        </div>
+
+        <div th:unless="${classi == null or classi.isEmpty()}">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Corso</th>
+                            <th>Docente</th>
+                            <th>Capienza</th>
+                            <th>Iscritti</th>
+                            <th>Azioni</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="classe : ${classi}">
+                            <td th:text="${classe.id}"></td>
+                            <td th:text="${classe.corso}"></td>
+                            <td th:text="${classe.docente}"></td>
+                            <td th:text="${classe.capienza}"></td>
+                            <td th:text="${classe.iscritti}"></td>
+                            <td>
+                                <!-- Azioni per la classe (visualizza iscritti, etc.) -->
+                                <a th:href="@{/segreteria/consultare-iscritti}" class="btn btn btn-sm btn-outline-info">Visualizza Iscritti</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <a href="/gestore/classi/organizza" class="btn btn-primary w-100 mb-3">
+                    ➕ Organizza Nuova Classe
+                </a>
+            </div>
+            <div class="col-md-6">
+                <a href="/gestore/docenti" class="btn btn-outline-secondary w-100 mb-3">
+                    Vai alla Gestione Docenti
+                </a>
+            </div>
+        </div>
+
+        <a href="/gestore" class="btn btn-secondary">Torna al Menu Gestore</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

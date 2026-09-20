@@ -1,7 +1,9 @@
 package org.gagandeepsuman.dao;
 
 import org.gagandeepsuman.entity.EntityCalendarioLezioni;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class CalendarioDAO extends GenericDAO<EntityCalendarioLezioni, Integer> {
 
 	public EntityCalendarioLezioni salvaCalendario(EntityCalendarioLezioni calendario) {
@@ -10,6 +12,22 @@ public class CalendarioDAO extends GenericDAO<EntityCalendarioLezioni, Integer> 
 
 	public EntityCalendarioLezioni trovaCalendario(int id) {
 		return findById(EntityCalendarioLezioni.class, id);
+	}
+
+	public EntityCalendarioLezioni trovaCalendarioPerCorso(int idCorso) {
+		try (org.hibernate.Session session = sessionFactory.openSession()) {
+			String hql = "FROM EntityCalendarioLezioni c WHERE c.corsoIdCorso = :idCorso";
+			java.util.List<EntityCalendarioLezioni> lista = session.createQuery(hql, EntityCalendarioLezioni.class)
+					.setParameter("idCorso", idCorso)
+					.getResultList();
+			if (!lista.isEmpty()) {
+				return lista.get(0);
+			}
+			return null;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	public EntityCalendarioLezioni aggiornaCalendario(EntityCalendarioLezioni calendario) {

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}">Menu Gestore</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/custom.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mb-4" th:text="${title}">Menu Gestore</h1>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Gestione Docenti</h5>
+                        <p class="card-text">
+                            Gestisci i docenti della scuola: aggiungi, visualizza, modifica e elimina docenti.
+                        </p>
+                        <a href="/gestore/docenti" class="btn btn-primary w-100">Vai alla Gestione Docenti</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Organizzazione Classi</h5>
+                        <p class="card-text">
+                            Organizza le classi della scuola: visualizza le classi esistenti e organizza nuove classi assegnando corsi e capacità.
+                        </p>
+                        <a href="/gestore/classi" class="btn btn-primary w-100">Vai all'Organizzazione Classi</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Gestione Corsi</h5>
+                        <p class="card-text">
+                            Visualizza e gestisci il catalogo dei corsi della scuola.
+                        </p>
+                        <a href="/gestore/corsi" class="btn btn-primary w-100">Vai alla Gestione Corsi</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Consultare Iscritti</h5>
+                        <p class="card-text">
+                            Visualizza l'elenco di tutte le iscrizioni attive ai corsi della scuola.
+                        </p>
+                        <a href="/gestore/consultare-iscritti" class="btn btn-primary w-100">Vai alla Consultazione Iscritti</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Consultare Statistiche Corsi</h5>
+                        <p class="card-text">
+                            Visualizza le statistiche dettagliate sui corsi: iscritti, posti disponibili, incassi.
+                        </p>
+                        <a href="/gestore/consultare-statistiche-corsi" class="btn btn-primary w-100">Vai alle Statistiche Corsi</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a href="/" class="btn btn-secondary">Torna al Menu Principale</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

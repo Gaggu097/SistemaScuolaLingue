@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}">Aggiungi Docente</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/custom.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mb-4" th:text="${title}">Aggiungi Docente</h1>
+
+        <div th:if="${message}" class="alert" th:classappend="${messageType} == 'success' ? 'alert-success' : 'alert-danger'">
+            <p th:text="${message}"></p>
+        </div>
+
+        <form th:action="@{/gestore/docenti/aggiungi}" method="post">
+            <div class="mb-3">
+                <label for="nome" class="form-label">Nome</label>
+                <input type="text" class="form-control" id="nome" name="nome" required
+                       placeholder="Inserisci il nome del docente">
+            </div>
+
+            <div class="mb-3">
+                <label for="cognome" class="form-label">Cognome</label>
+                <input type="text" class="form-control" id="cognome" name="cognome" required
+                       placeholder="Inserisci il cognome del docente">
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a href="/gestore/docenti" class="btn btn-secondary me-md-2">Annulla</a>
+                <button type="submit" class="btn btn-primary">Aggiungi Docente</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

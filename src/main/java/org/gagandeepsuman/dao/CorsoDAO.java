@@ -4,6 +4,10 @@ import org.gagandeepsuman.entity.EntityCorso;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
+import java.util.List;
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class CorsoDAO extends GenericDAO<EntityCorso, Integer> {
 
 	public EntityCorso salvaCorso(EntityCorso corso) {
@@ -14,8 +18,9 @@ public class CorsoDAO extends GenericDAO<EntityCorso, Integer> {
 		return findById(EntityCorso.class, id);
 	}
 
-	// public List<EntityCorso> trovaCorsi(String lingua, String livello) {
-		//return findAll(EntityCorso.class);
+	public List<EntityCorso> trovaTuttiCorsi() {
+		return findAll(EntityCorso.class);
+	}
 
 	public EntityCorso trovaPerLinguaELivello(String lingua, String livello) {
 		try (Session session = sessionFactory.openSession()) {
