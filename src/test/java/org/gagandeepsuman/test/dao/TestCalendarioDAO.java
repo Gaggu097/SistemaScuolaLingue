@@ -5,8 +5,8 @@ import org.gagandeepsuman.entity.EntityCalendarioLezioni;
 // per testing
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestCalendarioDAO {
     private EntityCalendarioLezioni c;
@@ -16,6 +16,14 @@ public class TestCalendarioDAO {
     void setUp() {
         c = new EntityCalendarioLezioni();
         cDAO = new CalendarioDAO();
+    }
+
+    @Test
+    void trovaCalendario() {
+        // 1 arrange 2act
+        c = cDAO.trovaCalendario(1);
+        // assert
+        assertEquals(1, c.getID(), "calendario must exist in DB for testing");
     }
 
     @Test
@@ -29,32 +37,3 @@ public class TestCalendarioDAO {
         assertTrue(cCancellato, "calendario must be deleted from DB for testing");
     }
 }
-
-    /*
-{
-    public static void main(String[] args) {
-
-        CalendarioDAO cDAO = new CalendarioDAO();
-
-        // 1. Istanzia un nuovo calendario
-        EntityCalendarioLezioni c = new EntityCalendarioLezioni();
-        c.setDataInizio(LocalDate.of(2026,10,26));
-        c.setCorsoIdCorso(152);
-
-        System.out.println("Salvataggio del calendario nel database PostgreSQL...");
-
-        // 2. Chiamata al DAO
-        EntityCalendarioLezioni cSalvato = cDAO.salvaCalendario(c);
-
-        // 3. Esito
-        if (cSalvato != null && cSalvato.getID() > 0) {
-            System.out.println("###########Calendario salvato con successo###########");
-            System.out.println("ID Generato: " + cSalvato.getID());
-            System.out.println("dataInizio: " + cSalvato.getDataInizio());
-            System.out.println("idCorso: " + cSalvato.getCorsoIdCorso());
-        } else {
-            System.err.println("❌ Errore durante il salvataggio del corso.");
-        }
-    }
-}
-    */

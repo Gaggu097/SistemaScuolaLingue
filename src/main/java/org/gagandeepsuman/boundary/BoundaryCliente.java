@@ -1,126 +1,272 @@
 package org.gagandeepsuman.boundary;
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Scanner;
 
-import org.gagandeepsuman.controller.GestioneScuolaController;
-import org.gagandeepsuman.dao.DocenteDAO;
-import org.gagandeepsuman.entity.EntityCorso;
-import org.gagandeepsuman.entity.EntityDocente;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
+import org.gagandeepsuman.service.IGestioneScuolaService;
+import org.gagandeepsuman.dao.DAOFactory;
+import org.gagandeepsuman.ui.UserInterface;
+import org.gagandeepsuman.ui.ConsoleUserInterface;
+import org.gagandeepsuman.util.ValidationService;
+
+import static java.lang.Integer.parseInt;
+
 
 public class BoundaryCliente {
-	private final GestioneScuolaController controlCliente;
-	private final Scanner scanner;
-	void main(){
-		mostraMenu();
-	}
+    private final IGestioneScuolaService controlCliente;
+    private final UserInterface ui;
 
-	public BoundaryCliente() {
-		this.controlCliente = new GestioneScuolaController();
-		this.scanner = new Scanner(System.in);
-	}
+    // Costruttore principale con iniezione di dipendenza
+    public BoundaryCliente(UserInterface ui) {
+        this.controlCliente = DAOFactory.getGestioneScuolaController();
+        this.ui = ui != null ? ui : new ConsoleUserInterface();
+    }
 
-	public void mostraMenu() {
-		int scelta = -1;
-		do {
-			System.out.println("\n=== MENU CLIENTE ===");
-			System.out.println("1. Visualizza Catalogo Corsi");
-			System.out.println("2. Registra Nuovo Cliente");
-			System.out.println("3. Iscriviti a un Corso");
-			System.out.println("4. Annulla Iscrizione");
-			System.out.println("0. Torna al menu principale");
-			System.out.print("Seleziona un'opzione: ");
+    // Costruttore di comodità per backward compatibility
+    public BoundaryCliente() {
+        this(new ConsoleUserInterface());
+    }
 
-			if (scanner.hasNextInt()) {
-				scelta = scanner.nextInt();
-				scanner.nextLine(); // Consuma il carattere newline
-				gestisciScelta(scelta);
-			} else {
-				System.out.println("Inserisci un numero valido.");
-				scanner.nextLine();
-			}
-		} while (scelta != 0);
-	}
+    void main(){
+        mostraMenu();
+    }
 
-	private void gestisciScelta(int scelta) {
-		switch (scelta) {
-			case 1 -> visualizzareCatalogo();
-			case 2 -> registrareCliente();
-			case 3 -> iscriversiAlCorso();
-			case 4 -> annullareIscrizione();
-			case 0 -> System.out.println("Ritorno al menu principale...");
-			default -> System.out.println("Opzione non valida.");
-		}
-	}
+    public void mostraMenu() {
+        int scelta = -1;
+        do {
+            ui.displayMessage("\n=== MENU CLIENTE ===");
+            ui.displayMessage("1. Visualizza Catalogo Corsi");
+            ui.displayMessage("2. Registra Nuovo Cliente");
+            ui.displayMessage("3. Iscriviti a un Corso");
+            ui.displayMessage("4. Annulla Iscrizione");
+            ui.displayMessage("0. Torna al menu principale");
+            ui.displayMessage("Seleziona un'opzione: ");
 
-	public void visualizzareCatalogo() {
-		List<EntityCorso> corsi = controlCliente.visualizzareCatalogo();
+            String input = ui.getInput("");
+            try {
+                scelta = Integer.parseInt(input);
+                gestisciScelta(scelta);
+            } catch (NumberFormatException e) {
+                ui.displayError("Inserisci un numero valido.");
+            }
+        } while (scelta != 0);
+    }
 
-		if (corsi == null || corsi.isEmpty()) {
-			System.out.println("Nessun corso attualmente disponibile.");
-		} else {
-			for (EntityCorso c : corsi) {
-				DocenteDAO dDAO = new DocenteDAO();
-				EntityDocente prof = dDAO.trovaDocente(c.getFKidDocente());
-				System.out.printf("ID: %d | Lingua Corso: %s |Livello Corso: %s |Costo: €%.2f | Posti Max: %d | Nome Docente Corso: %s | Cognome Docente Corso: %s%n",
-						c.getID(), c.getLinguaCorso(), c.getLivelloCorso(), c.getCosto(), c.getNumeroMassimoPartecipanti(), prof.getCognome(), prof.getCognome());
-			}
-		}
-	}
+    private void gestisciScelta(int scelta) {
+        switch (scelta) {
+            case 1 -> visualizzareCatalogo();
+            case 2 -> registrareCliente();
+            case 3 -> iscriversiAlCorso();
+            case 4 -> annullareIscrizione();
+            case 0 -> ui.displayMessage("Ritorno al menu principale...");
+            default -> ui.displayError("Opzione non valida.");
+        }
+    }
 
-	public void registrareCliente() {
-		System.out.println("\n--- REGISTRAZIONE NUOVO CLIENTE ---");
-		System.out.print("Nome: ");
-		String nome = scanner.nextLine();
-		System.out.print("Cognome: ");
-		String cognome = scanner.nextLine();
-		System.out.print("Email: formato <<...@...[.]...>");
-		String email = scanner.nextLine();
-		System.out.print("Telefono: ");
-		String telefono = scanner.nextLine();
-		System.out.print("Data di Nascita formato <<ANNO,mese,GIORNO>: ");
-		LocalDate dataNascita = LocalDate.parse(scanner.nextLine());
+    public void visualizzareCatalogo() {
+        controlCliente.visualizzareCatalogo();
+    }
 
-		boolean esito = controlCliente.registrazioneCliente(nome, cognome, dataNascita, email, telefono);
-		if (esito) {
-			System.out.println("Registrazione completata con successo!");
-		} else {
-			System.err.println("åErrore durante la registrazione del cliente.");
-		}
-	}
+    public void registrareCliente() {
+        ui.displayMessage("\n--- REGISTRAZIONE NUOVO CLIENTE ---");
+        String nome;
+        while(true){
+            nome = ui.getInput("Nome: ");
+            if (ValidationService.isNotEmpty(nome, "nome") && ValidationService.isValidLength(nome, 50, "nome")) break;
+            // Error messages are handled by ValidationService
+        }
+        String cognome;
+        while(true){
+            cognome = ui.getInput("Cognome: ");
+            if (ValidationService.isNotEmpty(cognome, "cognome") && ValidationService.isValidLength(cognome, 50, "cognome")) break;
+            // Error messages are handled by ValidationService
+        }
 
-	public void iscriversiAlCorso() {
-		System.out.println("\n--- ISCRIZIONE AL CORSO ---");
-		System.out.print("Inserisci Lingua Corso: ");
-		String linguaCorso = scanner.nextLine();
-		System.out.print("Inserisci Livello Corso: ");
-		String livelloCorso = scanner.nextLine();
-		System.out.print("Inserisci idCliente: ");
-		int idCliente = scanner.nextInt();
+        String email;
+        while(true){
+            email = ui.getInput("Email (formato <...@...[.]...>): ");
+            if (ValidationService.isNotEmpty(email, "email") && ValidationService.isValidLength(email, 100, "email") && ValidationService.isValidEmail(email, "email")) break;
+            // Error messages are handled by ValidationService
+        }
+        String telefono;
+        while(true){
+            telefono = ui.getInput("Telefono (formato <+39.....>): ");
+            if (ValidationService.isNotEmpty(telefono, "telefono") && ValidationService.isValidLength(telefono, 20, "telefono") && ValidationService.isValidPhone(telefono, "telefono")) break;
+            // Error messages are handled by ValidationService
+        }
 
-		boolean esito = controlCliente.iscriversiAlCorso(linguaCorso, livelloCorso, idCliente);
-		if (esito) {
-			System.out.println("Iscrizione effettuata con successo!");
-		}
-		else{
-			throw new UnsupportedOperationException();
-		}
-	}
+        LocalDate dataNascita = null;
+        while (dataNascita == null) {
+            String dateInput = ui.getInput("Data di Nascita formato <ANNO-MESE-GIORNO>: ");
+            if (ValidationService.isValidDate(dateInput, "data di nascita")) {
+                try {
+                    // LocalDate.parse expects standard ISO format (YYYY-MM-DD) by default
+                    dataNascita = LocalDate.parse(dateInput.trim());
+                } catch (DateTimeParseException e) {
+                    ui.displayError("Errore: Formato data non valido. Usa AAAA-MM-GG.");
+                }
+            }
+            // Error messages are handled by ValidationService
+        }
 
-	public void annullareIscrizione() {
-		System.out.println("\n--- ANNULLAMENTO ISCRIZIONE ---");
-		System.out.print("Inserisci ID Cliente: ");
-		int idCliente = scanner.nextInt();
-		System.out.print("Inserisci ID Corso: ");
-		int idCorso = scanner.nextInt();
-		scanner.nextLine();
+        boolean esito = controlCliente.registrazioneCliente(nome, cognome, dataNascita, email, telefono);
+        if (esito) {
+            ui.displayMessage("\nRegistrazione completata con successo!");
+        } else {
+            ui.displayError("\nErrore durante la registrazione del cliente.");
+        }
+    }
 
-		boolean esito = controlCliente.annullareIscrizione(idCliente, idCorso);
-		if (esito) {
-			System.out.println("Iscrizione annullata con successo!");
-		} else {
-			System.err.println("Errore durante l'annullamento dell'iscrizione.");
-		}
-	}
+    public void iscriversiAlCorso() {
+
+        ui.displayMessage("\n--- ISCRIZIONE AL CORSO ---");
+
+        String linguaCorso;
+        while(true){
+            linguaCorso = ui.getInput("Inserisci Lingua Corso: ");
+            if (ValidationService.isNotEmpty(linguaCorso, "lingua corso") && ValidationService.isValidLength(linguaCorso, 30, "lingua corso")) break;
+            // Error messages are handled by ValidationService
+        }
+        String livelloCorso;
+        while(true){
+            livelloCorso = ui.getInput("Inserisci Livello Corso: ");
+            if (ValidationService.isNotEmpty(livelloCorso, "livello corso") && ValidationService.isValidLength(livelloCorso, 10, "livello corso")) break;
+            // Error messages are handled by ValidationService
+        }
+
+        int idCliente;
+        while(true){
+            String idInput = ui.getInput("Inserisci Id Cliente: ");
+            if (ValidationService.isNotEmpty(idInput, "ID cliente") && ValidationService.isOnlyDigits(idInput, "ID cliente")) {
+                idCliente = parseInt(idInput);
+                if (ValidationService.isPositive(idCliente, "ID cliente")) {
+                    break;
+                }
+            }
+            // Error messages are handled by ValidationService
+        }
+
+        boolean esito = controlCliente.iscriversiAlCorso(linguaCorso, livelloCorso, idCliente);
+        if (esito) {
+            ui.displayMessage("Iscrizione effettuata con successo!");
+        }
+        else{
+            ui.displayError("\nIscrizione non effettuata!");
+            // throw new UnsupportedOperationException();
+        }
+    }
+
+    public int iscriversiAlCorsoTest(String linguaCorso, String livelloCorso, String idCliente) {
+        int stato = 1;
+
+        if (linguaCorso.length() > 30) {
+            stato+= 2;
+            ui.displayError("Errore: linguaCorso deve contenere massimo 30 caratteri");
+            return stato;
+        }
+        else if(!ValidationService.isOnlyLetters(linguaCorso, "lingua corso")){
+            ui.displayError("Errore: linguaCorso contiene caratteri non validi");
+            stato +=3;
+            return stato;
+        }
+
+        if(livelloCorso.length() > 10){
+            stato += 4;
+            ui.displayError("Errore: il livello Corso non deve contenere più di 10 caratteri");
+            return stato;
+        }
+        else if(!ValidationService.isOnlyLettersOrNumbers(livelloCorso, "livello corso")){
+            ui.displayError("Errore: il livello corso contiene caratteri non validi");
+            stato += 5;
+            return stato;
+        }
+
+        // controllo su cliente
+
+        // int cliente = parseInt(idCliente);
+        if(ValidationService.isOnlyDigits(idCliente, "ID cliente") && (DAOFactory.getClienteDAO().trovaCliente(parseInt(idCliente))) == null){
+            // se id cliente contiene solo numeri [0-9] e non viene trovato
+            stato += 7;
+            ui.displayMessage("ID cliente non trovato.");
+            return stato;
+        }
+        else if(!ValidationService.isOnlyDigits(idCliente, "ID cliente")){
+            // se id cliente non contiene solo numeri [0-9]
+            ui.displayError("ID cliente contiene caratteri non validi.");
+            stato += 8;
+            return stato;
+        }
+
+
+        boolean esito = false;
+        int cliente = parseInt(idCliente);
+        ui.displayMessage("Stato: "+stato);
+        // tutti input validi?
+        if ( stato == 1){
+            ui.displayMessage("Stato: "+stato);
+            esito = controlCliente.iscriversiAlCorsoTest(linguaCorso, livelloCorso, cliente);
+            return stato;
+        }else{
+            ui.displayMessage("Stato: " + stato );
+            return stato;
+        }
+        //		if (esito) {
+        //			System.out.println("Iscrizione effettuata con successo!");
+        //		}
+        //		else{
+        //			System.out.println("\nIscrizione non effettuata!");
+        //			// throw new UnsupportedOperationException();
+        //		}
+    }
+
+    public void annullareIscrizione() {
+
+        ui.displayMessage("\n--- ANNULLAMENTO ISCRIZIONE ---");
+        int idCliente;
+        while(true){
+            String idInput = ui.getInput("Inserisci ID Cliente: ");
+            if (ValidationService.isNotEmpty(idInput, "ID cliente") && ValidationService.isOnlyDigits(idInput, "ID cliente")) {
+                idCliente = parseInt(idInput);
+                if (controlCliente.checkIdCliente(idCliente)) {
+                    break;
+                } else {
+                    ui.displayError("Errore: ID cliente non valido o non esistente.");
+                }
+            } else {
+                // Error messages handled by ValidationService for empty/not digits
+                if (idInput.isEmpty()) {
+                    ui.displayError("Errore: il campo ID cliente non può essere vuoto.");
+                } else {
+                    ui.displayError("Errore: ID cliente contiene caratteri non validi.");
+                }
+            }
+        }
+
+        int idIscrizione;
+        while(true){
+            String idIscrizioneInput = ui.getInput("Inserisci ID Iscrizione: ");
+            if (ValidationService.isNotEmpty(idIscrizioneInput, "ID iscrizione") && ValidationService.isOnlyDigits(idIscrizioneInput, "ID iscrizione")) {
+                idIscrizione = parseInt(idIscrizioneInput);
+                if (controlCliente.checkIdIscrizione(idIscrizione)) {
+                    break;
+                } else {
+                    ui.displayError("Errore: ID iscrizione non valido o non esistente.");
+                }
+            } else {
+                // Error messages handled by ValidationService for empty/not digits
+                if (idIscrizioneInput.isEmpty()) {
+                    ui.displayError("Errore: il campo ID iscrizione non può essere vuoto.");
+                } else {
+                    ui.displayError("Errore: ID iscrizione contiene caratteri non validi.");
+                }
+            }
+        }
+        boolean esito = controlCliente.annullareIscrizione(idCliente, idIscrizione);
+        if (esito) {
+            ui.displayMessage("[Cliente] Iscrizione annullata con successo!");
+        } else {
+            ui.displayError("[Cliente] Errore durante l'annullamento dell'iscrizione.");
+        }
+    }
 
 }

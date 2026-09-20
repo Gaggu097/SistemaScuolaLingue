@@ -7,7 +7,7 @@ import org.hibernate.cfg.Configuration;
 
 import java.util.List;
 
-public class GenericDAO<T, ID> {
+public class GenericDAO<T, ID> implements IDAO<T, ID> {
 
     protected static SessionFactory sessionFactory;
 
@@ -21,6 +21,7 @@ public class GenericDAO<T, ID> {
     }
 
     // restituisce ID elemento appena creato
+    @Override
     public T save(T entity) {
         Transaction tx = null;
         try (Session session = sessionFactory.openSession()) {
@@ -35,6 +36,7 @@ public class GenericDAO<T, ID> {
         }
     }
 
+    @Override
     public T findById(Class<T> clazz, ID id) {
         try (Session session = sessionFactory.openSession()) {
             return session.find(clazz, id);
@@ -44,7 +46,10 @@ public class GenericDAO<T, ID> {
         }
     }
 
-    public List<T> findAll(Class<T> clazz) {
+    // Esempio con Hibernate / JPA
+    @Override
+    public List<T> findAll(Class<T> clazz){
+    //public <T> List<T> findAll(Class<T> clazz) {
         try (Session session = sessionFactory.openSession()) {
             String hql = "FROM " + clazz.getSimpleName();
             return session.createQuery(hql, clazz).getResultList();
@@ -54,6 +59,7 @@ public class GenericDAO<T, ID> {
         }
     }
 
+    @Override
     public T update(T entity) {
         Transaction tx = null;
         T updatedEntity = null;
@@ -68,6 +74,7 @@ public class GenericDAO<T, ID> {
         return updatedEntity;
     }
 
+    @Override
     public void delete(T entity) {
         Transaction tx = null;
         try (Session session = sessionFactory.openSession()) {
@@ -80,7 +87,9 @@ public class GenericDAO<T, ID> {
             e.printStackTrace();
         }
     }
+
     // cancella cercando per ID dell'elemento
+    @Override
     public boolean deleteById(Class<T> clazz, ID id) {
         Transaction tx = null;
         try (Session session = sessionFactory.openSession()) {

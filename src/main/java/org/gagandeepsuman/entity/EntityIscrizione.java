@@ -16,6 +16,8 @@ package org.gagandeepsuman.entity;
 import java.io.Serializable;
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.OffsetDateTime;
 
 @Entity
 @Table(name="iscrizione")
@@ -45,6 +47,15 @@ public class EntityIscrizione implements Serializable {
 		this.FKidCorso = FKidCorso;
 		this.FKidClasse = FKidClasse;
 	}
+	public EntityIscrizione(LocalDate dataIscrizione, String annoAccademico, int FKidCliente, int FKidCorso,
+							int FKidClasse, OffsetDateTime deletedAt) {
+		this.dataIscrizione = dataIscrizione;
+		this.annoAccademico = annoAccademico;
+		this.FKidCliente = FKidCliente;
+		this.FKidCorso = FKidCorso;
+		this.FKidClasse = FKidClasse;
+		this.deletedAt = deletedAt;
+	}
 	
 	@Column(name="idiscrizione", nullable=false, length=10)
 	@Id	
@@ -64,6 +75,8 @@ public class EntityIscrizione implements Serializable {
 	private int FKidCorso;
 	@Column(name = "classeidclasse")
 	private int FKidClasse;
+	@Column(name = "deleted_at")
+	private OffsetDateTime deletedAt;
 	
 	private void setID(int value) {
 		this.ID = value;
@@ -119,5 +132,13 @@ public class EntityIscrizione implements Serializable {
 
     public void setFKidClasse(int FKidClasse) {
         this.FKidClasse = FKidClasse;
+    }
+
+    public OffsetDateTime getDeleted_at() {
+        return deletedAt;
+    }
+
+    public void setDeleted_at(OffsetDateTime deleted_at) {
+        this.deletedAt = deleted_at;
     }
 }

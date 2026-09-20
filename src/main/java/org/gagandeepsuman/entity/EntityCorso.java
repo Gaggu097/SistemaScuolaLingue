@@ -123,10 +123,34 @@ public class EntityCorso implements Serializable {
 		return numIscritti;
 	}
 	
-	public int verificaDisponbilitàPosto() {
-		//TODO: Implement Method
-		return getNumeroMassimoPartecipanti() - getNumIscritti();
-		// throw new UnsupportedOperationException();
+	/**
+	 * Verifica la disponibilità di posti nel corso.
+	 *
+	 * @return numero di posti disponibili (massimo 0 se il corso è sovraprenotato)
+	 */
+	public int verificaDisponbilitaPosto() {
+		int postiDisponibili = getNumeroMassimoPartecipanti() - getNumIscritti();
+		// Non restituire valori negativi - se ci sono più iscritti del massimo,
+		// restituisci 0 posti disponibili (il corso è pieno o sovraprenotato)
+		return Math.max(0, postiDisponibili);
+	}
+
+	/**
+	 * Controlla se il corso è pieno.
+	 *
+	 * @return vero se non ci sono posti disponibili, falso altrimenti
+	 */
+	public boolean isCorsoPieno() {
+		return verificaDisponbilitaPosto() == 0;
+	}
+
+	/**
+	 * Valida la consistenza dello stato del corso.
+	 *
+	 * @return vero se il numero di iscritti è valido (non negativo e non superiore al massimo)
+	 */
+	public boolean isStatoValido() {
+		return getNumIscritti() >= 0 && getNumIscritti() <= getNumeroMassimoPartecipanti();
 	}
 	
 	public String toString() {
