@@ -9,10 +9,21 @@
 </head>
 <body>
     <div class="container">
+        <!-- User info and login/logout -->
+        <div class="mb-3">
+            <div th:if="${username}" class="d-flex justify-content-between align-items-center">
+                <span>Benvenuto, <strong th:text="${username}"></strong> (<span th:text="${userRole}"></span>)</span>
+                <a href="/logout" class="btn btn-outline-danger btn-sm">Logout</a>
+            </div>
+            <div th:unless="${username}">
+                <a href="/login" class="btn btn-primary btn-sm">Login</a>
+            </div>
+        </div>
+
         <h1 class="mb-4" th:text="${title}">Menu Gestore</h1>
 
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="card mb-4">
                     <div class="card-body">
                         <h5 class="card-title">Gestione Docenti</h5>
@@ -23,7 +34,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="card mb-4">
                     <div class="card-body">
                         <h5 class="card-title">Organizzazione Classi</h5>
@@ -34,7 +45,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="card mb-4">
                     <div class="card-body">
                         <h5 class="card-title">Gestione Corsi</h5>
@@ -42,6 +53,17 @@
                             Visualizza e gestisci il catalogo dei corsi della scuola.
                         </p>
                         <a href="/gestore/corsi" class="btn btn-primary w-100">Vai alla Gestione Corsi</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Gestione Impiegati Segreteria</h5>
+                        <p class="card-text">
+                            Gestisci gli impiegati di segreteria: aggiungi, visualizza, modifica e elimina impiegati.
+                        </p>
+                        <a href="/gestore/impiegati" class="btn btn-primary w-100">Vai alla Gestione Impiegati Segreteria</a>
                     </div>
                 </div>
             </div>

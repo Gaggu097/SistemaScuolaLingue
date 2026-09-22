@@ -16,14 +16,7 @@
         </div>
 
         <form th:action="@{/cliente/annulla}" method="post" class="row g-3 needs-validation" novalidate>
-            <div class="col-md-6">
-                <label for="idCliente" class="form-label">ID Cliente</label>
-                <input type="number" class="form-control" id="idCliente" name="idCliente" required min="1">
-                <div class="invalid-feedback">
-                    Inserisci il tuo ID cliente.
-                </div>
-            </div>
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <label for="idIscrizione" class="form-label">ID Iscrizione</label>
                 <input type="number" class="form-control" id="idIscrizione" name="idIscrizione" required min="1">
                 <div class="invalid-feedback">

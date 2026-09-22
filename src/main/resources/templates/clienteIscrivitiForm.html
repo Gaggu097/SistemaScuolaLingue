@@ -16,17 +16,13 @@
         </div>
 
         <form th:action="@{/cliente/iscriviti}" method="post" class="row g-3">
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <label for="linguaCorso" class="form-label">Lingua Corso</label>
                 <input type="text" class="form-control" id="linguaCorso" name="linguaCorso" required>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <label for="livelloCorso" class="form-label">Livello Corso</label>
                 <input type="text" class="form-control" id="livelloCorso" name="livelloCorso" required>
-            </div>
-            <div class="col-md-4">
-                <label for="idCliente" class="form-label">ID Cliente</label>
-                <input type="number" class="form-control" id="idCliente" name="idCliente" required min="1">
             </div>
 
             <div class="col-12">

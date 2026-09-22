@@ -43,6 +43,10 @@ public class DAOFactory {
         return new CredenzialiDAO();
     }
 
+    public static ImpiegatoSegreteriaDAO getImpiegatoSegreteriaDAO() {
+        return new ImpiegatoSegreteriaDAO();
+    }
+
     public static GenericDAO getGenericDAO(Class clazz) {
         // fallback
         try {

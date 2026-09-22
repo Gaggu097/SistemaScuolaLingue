@@ -13,6 +13,7 @@ import java.time.Month;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
+import org.gagandeepsuman.util.PasswordSecurity;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.text.Normalizer;
@@ -1105,5 +1106,120 @@ public class GestioneScuolaController implements IGestioneScuolaService {
 
     public boolean checkIdCorso(int idCorso) {
         return (DAOFactory.getCorsoDAO().trovaCorso(idCorso)) != null;
+    }
+
+    // Impiegato Segreteria management methods
+    @Override
+    public boolean aggiungiImpiegatoSegreteria(String nome, String cognome, String username, String password) {
+        // 1. Validate input
+        if (nome == null || nome.isEmpty() || cognome == null || cognome.isEmpty() ||
+            username == null || username.isEmpty() || password == null || password.isEmpty()) {
+            System.out.println("[gsController] Errore: tutti i campi sono obbligatori.");
+            return false;
+        }
+
+        // 2. Check if username already exists
+        ImpiegatoSegreteriaDAO impiegatoDAO = DAOFactory.getImpiegatoSegreteriaDAO();
+        if (impiegatoDAO.esisteUsername(username)) {
+            System.out.println("[gsController] Errore: lo username '" + username + "' è già in uso.");
+            return false;
+        }
+
+        // 3. Hash the password for security
+        String hashedPassword = PasswordSecurity.hashPassword(password);
+        if (hashedPassword == null) {
+            System.out.println("[gsController] Errore durante l'hashing della password.");
+            return false;
+        }
+
+        // 4. Create and save the impiegato segreteria
+        EntityImpiegatoSegreteria impiegato = new EntityImpiegatoSegreteria();
+        impiegato.setNome(nome);
+        impiegato.setCognome(cognome);
+        impiegato.setUsername(username);
+        impiegato.setPassword(hashedPassword);
+
+        System.out.println("\n--- Salvataggio NUOVO IMPIEGATO SEGRETERIA in corso ------");
+        EntityImpiegatoSegreteria impiegatoSalvato = impiegatoDAO.salvaImpiegatoSegreteria(impiegato);
+        // 5. Check result
+        if (impiegatoSalvato == null) {
+            System.err.println("\n [gsController]--- ERRORE Salvataggio NUOVO IMPIEGATO SEGRETERIA ------");
+            return false;
+        } else {
+            System.out.println("\n--- Salvataggio NUOVO IMPIEGATO SEGRETERIA concluso ------");
+            return true;
+        }
+    }
+
+    @Override
+    public List<EntityImpiegatoSegreteria> elencoImpiegatiSegreteria() {
+        ImpiegatoSegreteriaDAO impiegatoDAO = DAOFactory.getImpiegatoSegreteriaDAO();
+        return impiegatoDAO.trovaTuttiImpiegatiSegreteria();
+    }
+
+    @Override
+    public boolean aggiornaImpiegatoSegreteria(int id, String nome, String cognome, String username, String password) {
+        // 1. Validate input
+        if (nome == null || nome.isEmpty() || cognome == null || cognome.isEmpty() ||
+            username == null || username.isEmpty()) {
+            System.out.println("[gsController] Errore: nome, cognome e username sono obbligatori.");
+            return false;
+        }
+
+        // 2. Get the impiegato segreteria
+        ImpiegatoSegreteriaDAO impiegatoDAO = DAOFactory.getImpiegatoSegreteriaDAO();
+        EntityImpiegatoSegreteria impiegato = impiegatoDAO.trovaImpiegatoSegreteria(id);
+        if (impiegato == null) {
+            System.out.println("[gsController] Impiegato segreteria non trovato con ID: " + id);
+            return false;
+        }
+
+        // 3. Check if username already exists for another impiegato
+        EntityImpiegatoSegreteria existingByUsername = impiegatoDAO.findByUsername(username);
+        if (existingByUsername != null && existingByUsername.getId() != id) {
+            System.out.println("[gsController] Errore: lo username '" + username + "' è già in uso da un altro impiegato.");
+            return false;
+        }
+
+        // 4. Update fields
+        impiegato.setNome(nome);
+        impiegato.setCognome(cognome);
+        impiegato.setUsername(username);
+
+        // 5. Hash password if provided (not empty)
+        if (password != null && !password.isEmpty()) {
+            String hashedPassword = PasswordSecurity.hashPassword(password);
+            if (hashedPassword == null) {
+                System.out.println("[gsController] Errore durante l'hashing della password.");
+                return false;
+            }
+            impiegato.setPassword(hashedPassword);
+        }
+
+        // 6. Save changes
+        System.out.println("\n--- Aggiornamento IMPIEGATO SEGRETERIA ID: " + id + " in corso ------");
+        EntityImpiegatoSegreteria impiegatoAggiornato = impiegatoDAO.aggiornaImpiegatoSegreteria(impiegato);
+        if (impiegatoAggiornato == null) {
+            System.err.println("\n [gsController]--- ERRORE Aggiornamento IMPIEGATO SEGRETERIA ID: " + id + " ------");
+            return false;
+        } else {
+            System.out.println("\n--- Aggiornamento IMPIEGATO SEGRETERIA ID: " + id + " concluso ------");
+            return true;
+        }
+    }
+
+    @Override
+    public boolean eliminaImpiegatoSegreteria(int id) {
+        ImpiegatoSegreteriaDAO impiegatoDAO = DAOFactory.getImpiegatoSegreteriaDAO();
+        EntityImpiegatoSegreteria impiegato = impiegatoDAO.trovaImpiegatoSegreteria(id);
+        if (impiegato == null) {
+            System.out.println("[gsController] Impiegato segreteria non trovato con ID: " + id);
+            return false;
+        }
+
+        System.out.println("\n--- Eliminazione IMPIEGATO SEGRETERIA ID: " + id + " in corso ------");
+        impiegatoDAO.eliminaImpiegatoSegreteria(impiegato);
+        System.out.println("[gsController] Impiegato segreteria eliminato con successo!");
+        return true;
     }
 }

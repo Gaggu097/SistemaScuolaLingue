@@ -40,4 +40,16 @@ public class CredenzialiDAO extends GenericDAO<EntityCredenziali, Integer> {
 		}
 	}
 
+	public EntityCredenziali findByUsername(String username) {
+		try (Session session = sessionFactory.openSession()) {
+			String hql = "FROM EntityCredenziali c WHERE c.username = :username";
+			return session.createQuery(hql, EntityCredenziali.class)
+					.setParameter("username", username)
+					.getSingleResultOrNull();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 }

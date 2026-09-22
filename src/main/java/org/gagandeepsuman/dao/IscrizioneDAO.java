@@ -107,7 +107,7 @@ public class IscrizioneDAO extends GenericDAO<EntityIscrizione, Integer> {
 	}
 
 	/**
-	 * Restituisce tutte le iscrizioni non annullate di una determinata classe.
+	 * Restituisce tutte le iscrizioni non annullateactive di una determinata classe.
 	 */
 	public List<EntityIscrizione> trovaPerClasse(int idClasse) {
 		try (Session session = sessionFactory.openSession()) {
@@ -125,6 +125,21 @@ public class IscrizioneDAO extends GenericDAO<EntityIscrizione, Integer> {
 			String hql = "FROM EntityIscrizione i WHERE i.FKidCorso = :idCorso AND i.deletedAt IS NULL";
 			return session.createQuery(hql, EntityIscrizione.class)
 					.setParameter("idCorso", classe.getFkIdCorso())
+					.getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	/**
+	 * Restituisce tutte le iscrizioni non annullate di un determinato cliente.
+	 */
+	public List<EntityIscrizione> trovaPerCliente(int idCliente) {
+		try (Session session = sessionFactory.openSession()) {
+			String hql = "FROM EntityIscrizione i WHERE i.FKidCliente = :idCliente AND i.deletedAt IS NULL";
+			return session.createQuery(hql, EntityIscrizione.class)
+					.setParameter("idCliente", idCliente)
 					.getResultList();
 		} catch (Exception e) {
 			e.printStackTrace();

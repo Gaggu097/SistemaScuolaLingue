@@ -9,6 +9,17 @@
 </head>
 <body>
     <div class="container">
+        <!-- User info and login/logout -->
+        <div class="mb-3">
+            <div th:if="${username}" class="d-flex justify-content-between align-items-center">
+                <span>Benvenuto, <strong th:text="${username}"></strong> (<span th:text="${userRole}"></span>)</span>
+                <a href="/logout" class="btn btn-outline-danger btn-sm">Logout</a>
+            </div>
+            <div th:unless="${username}">
+                <a href="/login" class="btn btn-primary btn-sm">Login</a>
+            </div>
+        </div>
+
         <h1 class="mb-4" th:text="${title}">Menu Segreteria</h1>
 
         <div class="list-group mb-4">

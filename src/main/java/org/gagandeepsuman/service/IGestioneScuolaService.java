@@ -1,6 +1,7 @@
 package org.gagandeepsuman.service;
 
 import java.math.BigDecimal;
+import org.gagandeepsuman.entity.EntityImpiegatoSegreteria;
 
 
 public interface IGestioneScuolaService {
@@ -42,4 +43,10 @@ public interface IGestioneScuolaService {
 
     // Lesson management
     void annullareLezione(int idLezione);
+
+    // Impiegato Segreteria management
+    boolean aggiungiImpiegatoSegreteria(String nome, String cognome, String username, String password);
+    java.util.List<EntityImpiegatoSegreteria> elencoImpiegatiSegreteria();
+    boolean aggiornaImpiegatoSegreteria(int id, String nome, String cognome, String username, String password);
+    boolean eliminaImpiegatoSegreteria(int id);
 }

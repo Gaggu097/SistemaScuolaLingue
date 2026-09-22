@@ -9,10 +9,27 @@
 </head>
 <body>
     <div class="container">
+        <!-- User info and login/logout -->
+        <div class="mb-3">
+            <div th:if="${username}" class="d-flex justify-content-between align-items-center">
+                <span>Benvenuto, <strong th:text="${username}"></strong> (<span th:text="${userRole}"></span>)</span>
+                <a href="/logout" class="btn btn-outline-danger btn-sm">Logout</a>
+            </div>
+            <div th:unless="${username}">
+                <a href="/login" class="btn btn-primary btn-sm">Login</a>
+            </div>
+        </div>
+
         <h1 class="mb-4" th:text="${title}">Catalogo Corsi</h1>
 
         <div th:if="${message}" class="alert" th:classappend="${messageType} == 'success' ? 'alert-success' : 'alert-danger'">
             <p th:text="${message}"></p>
+        </div>
+
+        <!-- Informative message about course accessibility -->
+        <div class="alert alert-info">
+            <strong>Nota:</strong> La consultazione del catalogo corsi è liberamente accessibile a tutti i visitatori.
+            Per iscriversi a un corso, è necessario effettuare il login o registrarsi.
         </div>
 
         <div th:if="${corsi == null or corsi.isEmpty()}">
@@ -33,6 +50,7 @@
                             <th>Posti Massimi</th>
                             <th>Posti Disponibili</th>
                             <th>Docente</th>
+                            <th th:if="${userRole == 'CLIENTE'}">Azioni</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,6 +62,18 @@
                             <td th:text="${corso.numeroMassimoPartecipanti}">20</td>
                             <td th:text="${corso.disponibili}">15</td>
                             <td th:text="${corso.docenteCognome} + ' ' + ${corso.docenteNome}">Rossi Mario</td>
+                            <th:block th:if="${userRole == 'CLIENTE'}">
+                                <td>
+                                    <a th:href="@{/cliente/iscriviti}"
+                                       th:unless="${corso.alreadyEnrolled}"
+                                       class="btn btn-success btn-sm">
+                                        Iscriviti
+                                    </a>
+                                    <span th:if="${corso.alreadyEnrolled}" class="text-muted">
+                                        Già iscritto
+                                    </span>
+                                </td>
+                            </th:block>
                         </tr>
                     </tbody>
                 </table>

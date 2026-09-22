@@ -15,12 +15,18 @@ import org.gagandeepsuman.dao.ClienteDAO;
 import org.gagandeepsuman.dao.IscrizioneDAO;
 import org.gagandeepsuman.dao.ClasseDAO;
 import org.gagandeepsuman.dao.PagamentoDAO;
+import org.gagandeepsuman.dao.CredenzialiDAO;
 import org.gagandeepsuman.entity.EntityIscrizione;
 import org.gagandeepsuman.entity.EntityCorso;
 import org.gagandeepsuman.entity.EntityDocente;
 import org.gagandeepsuman.entity.EntityCliente;
 import org.gagandeepsuman.entity.EntityClasse;
 import org.gagandeepsuman.entity.EntityPagamento;
+import org.gagandeepsuman.entity.EntityCredenziali;
+import org.gagandeepsuman.entity.EntityImpiegatoSegreteria;
+import org.gagandeepsuman.security.SessionManager;
+import org.gagandeepsuman.security.AuthenticationService;
+import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -56,6 +62,9 @@ public class WebController {
     @Autowired
     private PagamentoDAO pagamentoDAO;
 
+    @Autowired
+    private AuthenticationService authenticationService;
+
     /**
      * Displays the main menu page.
      *
@@ -82,12 +91,14 @@ public class WebController {
 
     /**
      * Displays the catalog of available courses.
+     * Enhancement: Show enroll buttons only for courses user is not already enrolled in.
      *
-     * @param model The Spring MVC model
+     * @param model The Spring MVC model (contains username and userRole from AuthInterceptor)
+     * @param session The HTTP session
      * @return The name of the Thymeleaf template to render
      */
     @GetMapping("/cliente/corsi")
-    public String showCorsi(Model model) {
+    public String showCorsi(Model model, HttpSession session) {
         model.addAttribute("title", "Catalogo Corsi");
         try {
             // Get all courses
@@ -95,6 +106,21 @@ public class WebController {
 
             // Prepare data for display
             List<Map<String, Object>> corsiData = new ArrayList<>();
+            List<Integer> enrolledCourseIds = new ArrayList<>();
+
+            // Check if user is authenticated as cliente to get their enrollments
+            String username = (String) session.getAttribute(SessionManager.USER_SESSION_ATTRIBUTE);
+            String userRole = (String) session.getAttribute(SessionManager.USER_ROLE_ATTRIBUTE);
+
+            if (username != null && "CLIENTE".equals(userRole)) {
+                // Get cliente credentials to find the cliente ID
+                EntityCredenziali credenziali = authenticationService.getCredentialsByUsername(username);
+                if (credenziali != null) {
+                    int idCliente = credenziali.getClienteId();
+                    // We'll check enrollment status for each course individually below
+                }
+            }
+
             if (corsi != null) {
                 for (EntityCorso corso : corsi) {
                     EntityDocente docente = docenteDAO.trovaDocente(corso.getFKidDocente());
@@ -109,6 +135,19 @@ public class WebController {
                     corsoInfo.put("disponibili", corso.verificaDisponbilitaPosto());
                     corsoInfo.put("docenteCognome", docente != null ? docente.getCognome() : "N/A");
                     corsoInfo.put("docenteNome", docente != null ? docente.getNome() : "N/A");
+                    // Add enrollment status for the current user
+                    boolean alreadyEnrolled = false;
+                    if (username != null && "CLIENTE".equals(userRole)) {
+                        // Get cliente credentials to find the cliente ID
+                        EntityCredenziali credenziali = authenticationService.getCredentialsByUsername(username);
+                        if (credenziali != null) {
+                            int idCliente = credenziali.getClienteId();
+                            // Check if the user is already enrolled in this specific course
+                            EntityIscrizione existingIscrizione = iscrizioneDAO.findByIds(idCliente, corso.getID());
+                            alreadyEnrolled = (existingIscrizione != null && existingIscrizione.getDeleted_at() == null);
+                        }
+                    }
+                    corsoInfo.put("alreadyEnrolled", alreadyEnrolled);
 
                     corsiData.add(corsoInfo);
                 }
@@ -185,20 +224,58 @@ public class WebController {
 
     /**
      * Handles course enrollment form submission.
+     * Requires authentication - extracts idCliente from authenticated user session.
+     * Enhancement: Prevents duplicate enrollments in the same course.
      *
      * @param model The Spring MVC model
      * @param redirectAttributes Attributes for redirect with flash messages
+     * @param session The HTTP session
      * @return Redirect to cliente menu
      */
     @PostMapping("/cliente/iscriviti")
     public String iscriversiAlCorso(
             @RequestParam("linguaCorso") String linguaCorso,
             @RequestParam("livelloCorso") String livelloCorso,
-            @RequestParam("idCliente") int idCliente,
             Model model,
-            RedirectAttributes redirectAttributes) {
+            RedirectAttributes redirectAttributes,
+            HttpSession session) {
+
+        // Extract idCliente from authenticated user session
+        String username = (String) session.getAttribute(SessionManager.USER_SESSION_ATTRIBUTE);
+        if (username == null) {
+            redirectAttributes.addFlashAttribute("message", "Devi effettuare il login per iscriverti a un corso.");
+            redirectAttributes.addFlashAttribute("messageType", "error");
+            return "redirect:/login";
+        }
+
+        // Get cliente credentials to find the cliente ID
+        EntityCredenziali credenziali = authenticationService.getCredentialsByUsername(username);
+        int idCliente = (credenziali != null) ? credenziali.getClienteId() : 0;
+
+        if (idCliente <= 0) {
+            redirectAttributes.addFlashAttribute("message", "Errore nell'identificazione del cliente.");
+            redirectAttributes.addFlashAttribute("messageType", "error");
+            return "redirect:/login";
+        }
 
         try {
+            // Check if user is already enrolled in a course with the same language and level
+            boolean alreadyEnrolled = false;
+            EntityCorso matchingCorso = corsoDAO.trovaPerLinguaELivello(linguaCorso, livelloCorso);
+            if (matchingCorso != null) {
+                // Check if the user is already enrolled in this specific course
+                EntityIscrizione existingIscrizione = iscrizioneDAO.findByIds(idCliente, matchingCorso.getID());
+                if (existingIscrizione != null && existingIscrizione.getDeleted_at() == null) {
+                    alreadyEnrolled = true;
+                }
+            }
+
+            if (alreadyEnrolled) {
+                redirectAttributes.addFlashAttribute("message", "Sei già iscritto a un corso con questa lingua e livello!");
+                redirectAttributes.addFlashAttribute("messageType", "warning");
+                return "redirect:/cliente/corsi";
+            }
+
             boolean success = gestioneScuolaService.iscriversiAlCorso(
                     linguaCorso, livelloCorso, idCliente);
 
@@ -231,17 +308,37 @@ public class WebController {
 
     /**
      * Handles enrollment cancellation form submission.
+     * Requires authentication - extracts idCliente from authenticated user session.
      *
      * @param model The Spring MVC model
      * @param redirectAttributes Attributes for redirect with flash messages
+     * @param session The HTTP session
      * @return Redirect to cliente menu
      */
     @PostMapping("/cliente/annulla")
     public String annullareIscrizione(
-            @RequestParam("idCliente") int idCliente,
             @RequestParam("idIscrizione") int idIscrizione,
             Model model,
-            RedirectAttributes redirectAttributes) {
+            RedirectAttributes redirectAttributes,
+            HttpSession session) {
+
+        // Extract idCliente from authenticated user session
+        String username = (String) session.getAttribute(SessionManager.USER_SESSION_ATTRIBUTE);
+        if (username == null) {
+            redirectAttributes.addFlashAttribute("message", "Devi effettuare il login per annullare un'iscrizione.");
+            redirectAttributes.addFlashAttribute("messageType", "error");
+            return "redirect:/login";
+        }
+
+        // Get cliente credentials to find the cliente ID
+        EntityCredenziali credenziali = authenticationService.getCredentialsByUsername(username);
+        int idCliente = (credenziali != null) ? credenziali.getClienteId() : 0;
+
+        if (idCliente <= 0) {
+            redirectAttributes.addFlashAttribute("message", "Errore nell'identificazione del cliente.");
+            redirectAttributes.addFlashAttribute("messageType", "error");
+            return "redirect:/login";
+        }
 
         try {
             boolean success = gestioneScuolaService.annullareIscrizione(idCliente, idIscrizione);
@@ -975,6 +1072,198 @@ public class WebController {
         }
 
         return "redirect:/gestore/docenti";
+    }
+
+    // ==================== GESTORE - IMPIEGATO SEGRETERIA MANAGEMENT ====================
+
+    /**
+     * Displays the list of all impiegati segreteria.
+     *
+     * @param model The Spring MVC model
+     * @return The name of the Thymeleaf template to render
+     */
+    @GetMapping("/gestore/impiegati")
+    public String gestoreImpiegati(Model model) {
+        model.addAttribute("title", "Gestione Impiegati Segreteria");
+        try {
+            List<EntityImpiegatoSegreteria> impiegati = gestioneScuolaService.elencoImpiegatiSegreteria();
+            // Prepare data for display (password not shown for security)
+            List<Map<String, Object>> impiegatiData = new ArrayList<>();
+            if (impiegati != null) {
+                for (EntityImpiegatoSegreteria impiegato : impiegati) {
+                    Map<String, Object> impiegatoInfo = new HashMap<>();
+                    impiegatoInfo.put("id", impiegato.getId());
+                    impiegatoInfo.put("nome", impiegato.getNome());
+                    impiegatoInfo.put("cognome", impiegato.getCognome());
+                    impiegatoInfo.put("username", impiegato.getUsername());
+                    // Password not shown for security reasons
+                    impiegatoInfo.put("password", "******");
+                    impiegatiData.add(impiegatoInfo);
+                }
+            }
+            model.addAttribute("impiegati", impiegatiData);
+            model.addAttribute("message", "Lista impiegati segreteria caricata con successo.");
+            model.addAttribute("messageType", "success");
+        } catch (Exception e) {
+            model.addAttribute("impiegati", new ArrayList<>());
+            model.addAttribute("message", "Errore durante il caricamento degli impiegati segreteria: " + e.getMessage());
+            model.addAttribute("messageType", "error");
+        }
+        return "gestoreImpiegati";
+    }
+
+    /**
+     * Displays the form to add a new impiegato segreteria.
+     *
+     * @param model The Spring MVC model
+     * @return The name of the Thymeleaf template to render
+     */
+    @GetMapping("/gestore/impiegati/aggiungi")
+    public String showAggiungiImpiegatoSegreteriaForm(Model model) {
+        model.addAttribute("title", "Aggiungi Nuovo Impiegato Segreteria");
+        return "gestoreImpiegatiAggiungiForm";
+    }
+
+    /**
+     * Handles add impiegato segreteria form submission.
+     *
+     * @param model The Spring MVC model
+     * @param redirectAttributes Attributes for redirect with flash messages
+     * @return Redirect to impiegati list
+     */
+    @PostMapping("/gestore/impiegati/aggiungi")
+    public String aggiungiImpiegatoSegreteria(
+            @RequestParam("nome") String nome,
+            @RequestParam("cognome") String cognome,
+            @RequestParam("username") String username,
+            @RequestParam("password") String password,
+            Model model,
+            RedirectAttributes redirectAttributes) {
+
+        try {
+            boolean success = gestioneScuolaService.aggiungiImpiegatoSegreteria(nome, cognome, username, password);
+            if (success) {
+                redirectAttributes.addFlashAttribute("message", "Impiegato segreteria aggiunto con successo!");
+                redirectAttributes.addFlashAttribute("messageType", "success");
+            } else {
+                redirectAttributes.addFlashAttribute("message", "Errore durante l'aggiunta dell'impiegato segreteria.");
+                redirectAttributes.addFlashAttribute("messageType", "error");
+            }
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("message", "Errore nei dati forniti: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("messageType", "error");
+        }
+
+        return "redirect:/gestore/impiegati";
+    }
+
+    /**
+     * Displays the form to update an existing impiegato segreteria.
+     *
+     * @param id The ID of the impiegato segreteria to update
+     * @param model The Spring MVC model
+     * @return The name of the Thymeleaf template to render
+     */
+    @GetMapping("/gestore/impiegati/{id}/aggiorna")
+    public String showAggiornaImpiegatoSegreteriaForm(@PathVariable int id, Model model) {
+        EntityImpiegatoSegreteria impiegato = gestioneScuolaService.elencoImpiegatiSegreteria().stream()
+                .filter(i -> i.getId() == id)
+                .findFirst()
+                .orElse(null);
+        if (impiegato == null) {
+            model.addAttribute("message", "Impiegato segreteria non trovato.");
+            model.addAttribute("messageType", "error");
+            return "redirect:/gestore/impiegati";
+        }
+
+        model.addAttribute("title", "Aggiorna Impiegato Segreteria");
+        model.addAttribute("impiegato", impiegato);
+        return "gestoreImpiegatiAggiornaForm";
+    }
+
+    /**
+     * Handles update impiegato segreteria form submission.
+     *
+     * @param id The ID of the impiegato segreteria to update
+     * @param model The Spring MVC model
+     * @param redirectAttributes Attributes for redirect with flash messages
+     * @return Redirect to impiegati list
+     */
+    @PostMapping("/gestore/impiegati/{id}/aggiorna")
+    public String aggiornaImpiegatoSegreteria(@PathVariable int id,
+            @RequestParam("nome") String nome,
+            @RequestParam("cognome") String cognome,
+            @RequestParam("username") String username,
+            @RequestParam("password") String password,
+            Model model,
+            RedirectAttributes redirectAttributes) {
+
+        try {
+            boolean success = gestioneScuolaService.aggiornaImpiegatoSegreteria(id, nome, cognome, username, password);
+            if (success) {
+                redirectAttributes.addFlashAttribute("message", "Impiegato segreteria aggiornato con successo!");
+                redirectAttributes.addFlashAttribute("messageType", "success");
+            } else {
+                redirectAttributes.addFlashAttribute("message", "Errore durante l'aggiornamento dell'impiegato segreteria.");
+                redirectAttributes.addFlashAttribute("messageType", "error");
+            }
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("message", "Errore nei dati forniti: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("messageType", "error");
+        }
+
+        return "redirect:/gestore/impiegati";
+    }
+
+    /**
+     * Displays the confirmation page for deleting an impiegato segreteria.
+     *
+     * @param id The ID of the impiegato segreteria to delete
+     * @param model The Spring MVC model
+     * @return The name of the Thymeleaf template to render
+     */
+    @GetMapping("/gestore/impiegati/{id}/elimina")
+    public String showEliminaImpiegatoSegreteriaConfirm(@PathVariable int id, Model model) {
+        EntityImpiegatoSegreteria impiegato = gestioneScuolaService.elencoImpiegatiSegreteria().stream()
+                .filter(i -> i.getId() == id)
+                .findFirst()
+                .orElse(null);
+        if (impiegato == null) {
+            model.addAttribute("message", "Impiegato segreteria non trovato.");
+            model.addAttribute("messageType", "error");
+            return "redirect:/gestore/impiegati";
+        }
+
+        model.addAttribute("title", "Elimina Impiegato Segreteria - Conferma");
+        model.addAttribute("impiegato", impiegato);
+        return "gestoreImpiegatiEliminaConfirm";
+    }
+
+    /**
+     * Handles impiegato segreteria deletion.
+     *
+     * @param id The ID of the impiegato segreteria to delete
+     * @param model The Spring MVC model
+     * @param redirectAttributes Attributes for redirect with flash messages
+     * @return Redirect to impiegati list
+     */
+    @PostMapping("/gestore/impiegati/{id}/elimina")
+    public String eliminaImpiegatoSegreteria(@PathVariable int id, RedirectAttributes redirectAttributes) {
+        try {
+            boolean success = gestioneScuolaService.eliminaImpiegatoSegreteria(id);
+            if (success) {
+                redirectAttributes.addFlashAttribute("message", "Impiegato segreteria eliminato con successo!");
+                redirectAttributes.addFlashAttribute("messageType", "success");
+            } else {
+                redirectAttributes.addFlashAttribute("message", "Errore durante l'eliminazione dell'impiegato segreteria.");
+                redirectAttributes.addFlashAttribute("messageType", "error");
+            }
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("message", "Errore durante l'operazione: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("messageType", "error");
+        }
+
+        return "redirect:/gestore/impiegati";
     }
 
     // ==================== GESTORE - CLASS ORGANIZATION (CLASSI) ====================
